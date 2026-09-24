@@ -335,10 +335,13 @@ button, input, textarea, select { font: inherit; }
   animation: float 7s ease-in-out infinite;
 }
 
-.hero-brand-lockup {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+.hero-name-logo {
+  display: block;
+  flex: 0 0 auto;
+  width: min(100%, 500px);
+  height: auto;
+  max-width: none;
+  object-fit: contain;
 }
 
 .home-card-button {

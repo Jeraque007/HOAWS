@@ -1,0 +1,230 @@
+.tessera-page {
+  overflow: hidden;
+  color: var(--ink);
+  background: var(--cream);
+}
+
+.tessera-hero {
+  position: relative;
+  min-height: 760px;
+  overflow: hidden;
+  color: var(--white);
+  background: radial-gradient(circle at 78% 24%, rgba(27,157,176,.34), transparent 30%), linear-gradient(118deg, var(--ink) 0%, var(--deep) 58%, #0d3b47 100%);
+}
+
+.tessera-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .16;
+  background-image: linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: linear-gradient(to bottom, black, transparent 82%);
+}
+
+.tessera-hero-grid {
+  position: relative;
+  z-index: 1;
+  min-height: 760px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(380px, .9fr);
+  align-items: center;
+  gap: 70px;
+  padding-top: 105px;
+  padding-bottom: 70px;
+}
+
+.tessera-hero-copy { max-width: 660px; }
+.tessera-hero .eyebrow { color: var(--gold); }
+.tessera-hero h1 {
+  max-width: 700px;
+  margin: 0 0 27px;
+  font-size: clamp(4rem, 7.5vw, 7.2rem);
+  line-height: .95;
+  letter-spacing: -.08em;
+}
+
+.tessera-hero h1 em,
+.tessera-intro h2 span,
+.tessera-section-heading h2 span,
+.tessera-features-heading h2 span {
+  color: var(--cyan);
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 600;
+}
+
+.tessera-hero-copy > p:not(.eyebrow) {
+  max-width: 535px;
+  margin: 0;
+  color: rgba(255,255,255,.7);
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.tessera-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 23px; margin-top: 32px; }
+.tessera-text-link,
+.tessera-inline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--cyan);
+  font-size: 12px;
+  font-weight: 700;
+  transition: color .2s ease, transform .2s ease;
+}
+.tessera-text-link:hover,
+.tessera-inline-link:hover { color: var(--gold-soft); transform: translateX(3px); }
+
+.tessera-offer {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  max-width: 440px;
+  margin-top: 42px;
+  padding-top: 17px;
+  border-top: 1px solid rgba(255,255,255,.18);
+  color: rgba(255,255,255,.57);
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: .04em;
+}
+.tessera-offer svg { flex: 0 0 auto; color: var(--gold); }
+
+.tessera-hero-visual { position: relative; min-height: 535px; display: flex; align-items: center; justify-content: center; }
+.tessera-poster-frame {
+  width: min(100%, 430px);
+  padding: 13px;
+  border: 1px solid rgba(92,227,237,.42);
+  background: rgba(255,255,255,.06);
+  box-shadow: 0 30px 70px rgba(0,0,0,.35);
+  transform: rotate(2deg);
+}
+.tessera-poster-frame img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.tessera-logo-mark {
+  position: absolute;
+  left: 0;
+  bottom: 27px;
+  width: 158px;
+  padding: 13px;
+  border: 1px solid rgba(239,189,83,.6);
+  background: rgba(7,19,27,.86);
+  box-shadow: 0 16px 30px rgba(0,0,0,.25);
+  transform: rotate(-3deg);
+}
+.tessera-logo-mark img { width: 100%; aspect-ratio: 1; object-fit: contain; }
+.tessera-visual-label {
+  position: absolute;
+  right: 0;
+  bottom: 2px;
+  margin: 0;
+  color: rgba(255,255,255,.55);
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.tessera-intro { padding: 110px 0; border-top: 1px solid var(--line); background: var(--cream); }
+.tessera-intro-grid { display: grid; grid-template-columns: 1.1fr .8fr; gap: 90px; align-items: end; }
+.tessera-intro h2,
+.tessera-section-heading h2,
+.tessera-features-heading h2 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(2.7rem, 5vw, 5.2rem);
+  line-height: 1;
+  letter-spacing: -.07em;
+}
+.tessera-intro h2 span,
+.tessera-section-heading h2 span,
+.tessera-features-heading h2 span { color: var(--cyan-deep); }
+.tessera-intro-aside { max-width: 430px; color: #617278; }
+.tessera-intro-aside p { margin: 0; font-size: 16px; line-height: 1.7; }
+.tessera-intro-aside .tessera-inline-link { margin-top: 25px; color: var(--ink); }
+.tessera-intro-aside .tessera-inline-link:hover { color: var(--cyan-deep); }
+
+.tessera-showcase { background: #e8ebe6; }
+.tessera-section-heading { display: grid; grid-template-columns: 1.1fr .8fr; gap: 80px; align-items: end; margin-bottom: 58px; }
+.tessera-section-heading > p { max-width: 360px; margin: 0 0 4px; color: #617278; font-size: 15px; }
+.tessera-app-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 20px; align-items: stretch; }
+
+.tessera-art-card { display: grid; grid-template-columns: minmax(220px, .9fr) 1fr; overflow: hidden; border: 1px solid rgba(7,19,27,.1); background: var(--white); }
+.tessera-art-image { display: grid; place-items: center; min-height: 430px; padding: 26px; background: var(--deep); }
+.tessera-art-image img { width: 100%; max-width: 300px; aspect-ratio: 1; object-fit: cover; box-shadow: 0 22px 35px rgba(0,0,0,.28); }
+.tessera-art-copy { display: flex; flex-direction: column; justify-content: center; padding: 42px; }
+.tessera-art-copy .eyebrow,
+.tessera-card-label { color: var(--cyan-deep); }
+.tessera-art-copy h3 { max-width: 260px; margin: 0 0 17px; font-size: clamp(1.8rem, 3vw, 2.7rem); line-height: 1.05; letter-spacing: -.05em; }
+.tessera-art-copy > p:not(.eyebrow) { max-width: 290px; margin: 0; color: #617278; font-size: 14px; line-height: 1.65; }
+.tessera-art-copy .tessera-inline-link { margin-top: 28px; color: var(--ink); }
+.tessera-art-copy .tessera-inline-link:hover { color: var(--cyan-deep); }
+
+.tessera-download-card { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; overflow: hidden; padding: 44px; background: var(--gold); }
+.tessera-download-card::after { content: ''; position: absolute; right: -90px; bottom: -120px; width: 300px; height: 300px; border: 1px solid rgba(7,19,27,.2); border-radius: 50%; box-shadow: 0 0 0 30px rgba(7,19,27,.04), 0 0 0 60px rgba(7,19,27,.04); }
+.tessera-app-icon { width: 88px; height: 88px; margin-bottom: 20px; border: 7px solid rgba(255,255,255,.22); border-radius: 25px; object-fit: cover; }
+.tessera-card-label { display: flex; align-items: center; gap: 7px; margin-bottom: 13px; font: 10px 'DM Mono', monospace; letter-spacing: .12em; text-transform: uppercase; }
+.tessera-download-card h2 { max-width: 330px; margin: 0 0 14px; font-size: clamp(2rem, 3vw, 3rem); line-height: 1; letter-spacing: -.06em; }
+.tessera-download-card > p { position: relative; z-index: 1; max-width: 360px; margin: 0 0 28px; color: rgba(7,19,27,.72); font-size: 15px; line-height: 1.65; }
+.tessera-download-card .button { position: relative; z-index: 1; background: var(--ink); color: var(--gold-soft); box-shadow: none; }
+.tessera-download-card .button:hover { box-shadow: 0 10px 24px rgba(7,19,27,.2); }
+
+.tessera-features-section { background: var(--cream); }
+.tessera-features-heading { max-width: 720px; margin-bottom: 58px; }
+.tessera-feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+.tessera-feature { min-height: 220px; padding: 27px 24px 0 0; border-right: 1px solid var(--line); }
+.tessera-feature:not(:first-child) { padding-left: 24px; }
+.tessera-feature:last-child { border-right: 0; }
+.tessera-feature-number { color: var(--gold); font: 11px 'DM Mono', monospace; }
+.tessera-feature h3 { margin: 30px 0 10px; font-size: 20px; line-height: 1.15; letter-spacing: -.03em; }
+.tessera-feature p { margin: 0; color: #718085; font-size: 13px; line-height: 1.6; }
+
+.tessera-cta { color: var(--white); background: var(--deep); }
+.tessera-cta-inner { display: flex; align-items: flex-end; justify-content: space-between; gap: 50px; padding-top: 92px; padding-bottom: 92px; }
+.tessera-cta .eyebrow { color: var(--gold); }
+.tessera-cta h2 { max-width: 700px; margin: 0 0 16px; font-size: clamp(2.8rem, 5vw, 5.3rem); line-height: .98; letter-spacing: -.07em; }
+.tessera-cta p:not(.eyebrow) { max-width: 480px; margin: 0; color: rgba(255,255,255,.65); font-size: 16px; }
+
+
+@media (max-width: 800px) {
+  .tessera-hero,
+  .tessera-hero-grid { min-height: auto; }
+  .tessera-hero-grid { grid-template-columns: 1fr; gap: 35px; padding-top: 145px; padding-bottom: 70px; }
+  .tessera-hero h1 { font-size: clamp(3.7rem, 15vw, 6rem); }
+  .tessera-hero-visual { min-height: 430px; }
+  .tessera-poster-frame { width: min(100%, 350px); }
+  .tessera-logo-mark { left: 4%; width: 135px; }
+  .tessera-intro-grid,
+  .tessera-section-heading { grid-template-columns: 1fr; gap: 25px; }
+  .tessera-intro-aside { max-width: 560px; }
+  .tessera-section-heading { margin-bottom: 38px; }
+  .tessera-app-grid { grid-template-columns: 1fr; }
+  .tessera-art-image { min-height: 360px; }
+  .tessera-download-card { min-height: 380px; }
+  .tessera-feature-grid { grid-template-columns: repeat(2, 1fr); }
+  .tessera-feature:nth-child(2) { border-right: 0; }
+  .tessera-feature:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .tessera-feature:nth-child(3) { padding-left: 0; }
+  .tessera-feature:nth-child(4) { padding-left: 24px; }
+  .tessera-cta-inner { display: block; padding-top: 75px; padding-bottom: 75px; }
+  .tessera-cta .button { margin-top: 30px; }
+}
+
+@media (max-width: 520px) {
+  .tessera-hero-grid { padding-top: 125px; }
+  .tessera-actions { align-items: flex-start; flex-direction: column; gap: 17px; }
+  .tessera-hero-visual { min-height: 370px; }
+  .tessera-poster-frame { width: min(100%, 290px); }
+  .tessera-logo-mark { bottom: 15px; width: 112px; padding: 9px; }
+  .tessera-visual-label { right: 0; bottom: -3px; font-size: 8px; }
+  .tessera-art-card { grid-template-columns: 1fr; }
+  .tessera-art-image { min-height: 310px; }
+  .tessera-art-copy { padding: 30px 25px 34px; }
+  .tessera-download-card { padding: 34px 25px; }
+  .tessera-feature-grid { grid-template-columns: 1fr; }
+  .tessera-feature,
+  .tessera-feature:not(:first-child),
+  .tessera-feature:nth-child(3),
+  .tessera-feature:nth-child(4) { min-height: 0; padding: 25px 0; border-right: 0; border-top: 1px solid var(--line); }
+  .tessera-feature:first-child { border-top: 0; }
+}
+

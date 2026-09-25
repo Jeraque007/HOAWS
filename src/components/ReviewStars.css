@@ -1,0 +1,4 @@
+/* Star rating display. */
+
+.stars { color: var(--gold); letter-spacing: 5px; }
+

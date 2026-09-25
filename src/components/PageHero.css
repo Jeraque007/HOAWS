@@ -1,0 +1,31 @@
+/* Reusable page hero used by the inner pages. */
+
+.page-hero {
+  min-height: 650px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0 95px;
+  color: #fff;
+  background: radial-gradient(circle at 80% 20%, rgba(25,98,112,.5), transparent 32%), linear-gradient(125deg, #07141d, #0c2f3b);
+}
+.page-hero .eyebrow { color: var(--gold); }
+.page-hero h1 {
+  max-width: 780px;
+  margin: 0 0 27px;
+  font-size: clamp(3.8rem, 8vw, 7.5rem);
+  letter-spacing: -.07em;
+}
+.page-hero-copy { max-width: 470px; margin: 0; color: rgba(255,255,255,.63); font-size: 16px; }
+
+.page-hero h1 em {
+  color: var(--cyan);
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+@media (max-width: 800px) {
+  .page-hero { min-height: 520px; padding-bottom: 70px; }
+  .page-hero h1 { font-size: clamp(3.4rem, 14vw, 5.5rem); }
+}
+

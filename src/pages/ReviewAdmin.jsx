@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Bell, Check, LogOut, RefreshCw, ShieldCheck, X } from 'lucide-react'
+import ReviewStars from '../components/ReviewStars'
+import SEO from '../components/SEO'
 import {
   getAdminSession,
   getReviewModerationData,
@@ -9,7 +11,8 @@ import {
   signOutAdmin,
   subscribeToAdminAuth,
   updateReviewStatus,
-} from './supabase'
+} from '../lib/supabase'
+import './ReviewAdmin.css'
 
 function errorMessage(error, fallback) {
   return error?.message || fallback
@@ -19,15 +22,6 @@ function formatDate(value) {
   const date = value ? new Date(value) : null
   if (!date || Number.isNaN(date.getTime())) return 'Date unavailable'
   return new Intl.DateTimeFormat(undefined, { dateStyle: 'medium', timeStyle: 'short' }).format(date)
-}
-
-function Stars({ rating }) {
-  const safeRating = Math.max(0, Math.min(5, Number(rating) || 0))
-  return (
-    <div className="stars" aria-label={`${safeRating} out of 5 stars`}>
-      {'★'.repeat(safeRating)}{'☆'.repeat(5 - safeRating)}
-    </div>
-  )
 }
 
 export default function ReviewAdmin() {
@@ -160,12 +154,13 @@ export default function ReviewAdmin() {
   }
 
   if (authLoading) {
-    return <main className="review-admin-page"><div className="review-admin-state">Checking admin session…</div></main>
+    return <main className="review-admin-page"><SEO /><div className="review-admin-state">Checking admin session…</div></main>
   }
 
   if (!session) {
     return (
       <main className="review-admin-page">
+        <SEO />
         <section className="page-hero review-admin-hero">
           <div className="container page-hero-inner">
             <p className="eyebrow">Private workspace</p>
@@ -195,6 +190,7 @@ export default function ReviewAdmin() {
 
   return (
     <main className="review-admin-page">
+      <SEO />
       <section className="page-hero review-admin-hero">
         <div className="container page-hero-inner">
           <p className="eyebrow">Private workspace</p>
@@ -231,7 +227,7 @@ export default function ReviewAdmin() {
                 <p className="review-admin-state">Loading reviews…</p>
               ) : reviews.length ? reviews.map(review => (
                 <article className="review-admin-card" key={review.id}>
-                  <div className="review-admin-card-top"><Stars rating={review.rating} /><span className={`review-status review-status-${review.status}`}>{review.status}</span></div>
+                  <div className="review-admin-card-top"><ReviewStars rating={review.rating} /><span className={`review-status review-status-${review.status}`}>{review.status}</span></div>
                   <h3>{review.name}</h3>
                   <p>{review.message}</p>
                   <small>Submitted {formatDate(review.created_at)}</small>
@@ -257,4 +253,6 @@ export default function ReviewAdmin() {
       </section>
     </main>
   )
+
 }
+

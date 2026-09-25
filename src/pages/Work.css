@@ -1,0 +1,9 @@
+/* Work page: full project grid (card styles live in components/ProjectCard.css). */
+
+
+.work-page { padding-top: 110px; }
+
+@media (max-width: 800px) {
+  .work-page { padding-top: 75px; }
+}
+

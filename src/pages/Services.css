@@ -1,0 +1,27 @@
+/* Services page: numbered service detail rows. */
+
+.service-detail-list { border-top: 1px solid var(--line); }
+.service-detail {
+  display: grid;
+  grid-template-columns: 100px 1fr 80px;
+  gap: 30px;
+  padding: 65px 0;
+  border-bottom: 1px solid var(--line);
+}
+.service-detail h2 { margin: 0 0 12px; font-size: clamp(2rem, 4vw, 3.6rem); }
+.service-detail > div p { max-width: 510px; color: #66777b; }
+.service-detail ul { display: flex; flex-wrap: wrap; gap: 10px 24px; padding: 0; margin: 27px 0 0; list-style: none; }
+.service-detail li { display: flex; gap: 7px; align-items: center; color: var(--cyan-deep); font-size: 12px; font-weight: 700; }
+.service-index { color: #d5d9d1; font: clamp(2.7rem, 5vw, 4.5rem) 'Playfair Display', serif; text-align: right; }
+
+.services-page { padding-top: 110px; }
+.service-number, .service-index { color: var(--cyan-deep); font: 12px 'DM Mono', monospace; }
+
+@media (max-width: 800px) {
+  .service-detail { grid-template-columns: 35px 1fr; gap: 15px; padding: 45px 0; }
+  .service-index { display: none; }
+  .service-detail h2 { font-size: 2.3rem; }
+  .service-detail ul { display: grid; gap: 9px; }
+  .services-page { padding-top: 75px; }
+}
+

@@ -1,0 +1,11 @@
+/* Reviews page: layout for the review list + review form columns. */
+
+.reviews-page { background: #e8ebe6; }
+.reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 120px; }
+.review-admin-link { display: inline-flex; margin-top: 20px; color: var(--cyan-deep); font: 700 10px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .08em; }
+
+@media (max-width: 800px) {
+  .reviews-grid { gap: 60px; }
+  .reviews-grid { grid-template-columns: 1fr; }
+}
+

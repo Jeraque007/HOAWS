@@ -1,0 +1,28 @@
+/* About page: founder block and values grid. */
+
+.about-section { background: #e8ebe6; }
+.about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 90px; align-items: center; }
+.about-image img { display: block; width: 100%; border-radius: 20px; filter: drop-shadow(0 18px 20px rgba(7,19,27,.18)); }
+.about-copy h2 { margin-bottom: 27px; font-size: clamp(2.8rem, 5vw, 5rem); letter-spacing: -.06em; }
+.about-copy > p:not(.eyebrow) { max-width: 470px; color: #67767a; }
+.about-copy .button { margin-top: 20px; }
+.values-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+.values-grid div { padding-top: 20px; border-top: 1px solid var(--line); }
+.values-grid span { color: var(--gold); font: 11px 'DM Mono', monospace; }
+.values-grid h3 { margin: 30px 0 8px; font-size: 27px; }
+.values-grid p { max-width: 250px; color: #718085; font-size: 13px; }
+
+.about-copy h2 span {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+@media (max-width: 800px) {
+  .about-image { order: 2; }
+  .about-copy { order: 1; }
+  .about-grid { gap: 60px; }
+  .values-grid { grid-template-columns: 1fr; gap: 25px; }
+  .about-grid { grid-template-columns: 1fr; }
+}
+

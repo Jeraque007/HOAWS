@@ -1,0 +1,33 @@
+/* Reusable section intro (kicker + heading + aside copy). */
+
+.section-intro {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 80px;
+  margin-bottom: 65px;
+}
+.section-intro h2 {
+  margin: 0;
+  font-size: clamp(2.7rem, 5vw, 5.2rem);
+  letter-spacing: -.06em;
+}
+.section-intro h2 span { color: var(--cyan-deep); }
+.intro-aside {
+  padding-top: 20px;
+  max-width: 390px;
+  color: #617278;
+}
+.intro-aside .text-link { margin-top: 20px; color: var(--ink); }
+
+.section-intro h2 span {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+@media (max-width: 800px) {
+  .section-intro { margin-bottom: 40px; }
+  .intro-aside { padding-top: 0; }
+  .section-intro { grid-template-columns: 1fr; gap: 25px; }
+}
+

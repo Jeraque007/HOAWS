@@ -1,0 +1,101 @@
+/* Site header / navigation. */
+
+.site-header {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  color: var(--white);
+}
+
+.header-inner {
+  height: 105px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.brand span {
+  color: rgba(255,255,255,0.9);
+  font: 700 1rem 'DM Mono', monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.main-nav {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.main-nav a {
+  color: rgba(255,255,255,0.7);
+  transition: color 0.2s ease;
+}
+
+.main-nav a:hover,
+.main-nav a.active {
+  color: var(--white);
+}
+
+.main-nav .nav-cta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 15px;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: var(--white);
+}
+
+.main-nav .nav-cta:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 0;
+  color: #fff;
+  padding: 8px;
+}
+
+.main-nav a:focus-visible,
+.main-nav a:active { color: var(--white); }
+
+@media (max-width: 800px) {
+  .header-inner { height: 82px; }
+  .brand img { width: 44px; height: 44px; }
+  .brand span { font-size: .75rem; }
+  .menu-toggle { display: block; position: relative; z-index: 11; }
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 92px 20px 25px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--deep);
+    box-shadow: 0 20px 30px rgba(0,0,0,.15);
+  }
+  .main-nav.open { display: flex; }
+  .main-nav a { padding: 12px 0; }
+  .main-nav .nav-cta { justify-content: center; margin-top: 10px; }
+}
+

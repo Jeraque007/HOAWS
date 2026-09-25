@@ -1,0 +1,18 @@
+/* Review submission form and success state. */
+
+.review-form-wrap { padding: 35px; background: var(--white); }
+.review-form-wrap h2 { margin-bottom: 28px; font-size: 42px; }
+.review-form-wrap form { display: grid; gap: 16px; }
+.review-form-wrap label { display: grid; gap: 6px; color: #66767a; font: 10px 'DM Mono', monospace; text-transform: uppercase; }
+.review-form-wrap input:not(.honeypot), .review-form-wrap select, .review-form-wrap textarea { width: 100%; border: 1px solid var(--line); padding: 12px; color: var(--ink); background: var(--cream); font: 13px 'Manrope', sans-serif; resize: vertical; }
+.review-form-wrap input:focus, .review-form-wrap textarea:focus, .review-form-wrap select:focus { outline: 1px solid var(--cyan-deep); }
+.review-form-wrap .button { justify-self: start; margin-top: 5px; }
+.honeypot { position: absolute; opacity: 0; pointer-events: none; }
+.success-message { padding: 30px 0; color: var(--cyan-deep); }
+.success-message h3 { margin: 15px 0 4px; color: var(--ink); }
+.success-message p { color: #718085; }
+
+@media (max-width: 800px) {
+  .review-form-wrap { padding: 24px; }
+}
+

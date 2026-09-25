@@ -1,0 +1,111 @@
+/* Digital business card page: flip card, links and actions. */
+
+.digital-card-page .page-hero { min-height: 520px; }
+.card-section { padding-top: 30px; }
+.card-stack { display: flex; justify-content: center; }
+.digital-card {
+  width: min(100%, 560px);
+  height: 420px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  perspective: 1400px;
+  overflow: visible;
+  margin: 0 auto;
+}
+.digital-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .7s ease;
+}
+.digital-card.is-flipped .digital-card-inner { transform: rotateY(180deg); }
+.digital-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  border-radius: 26px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  box-shadow: 0 24px 50px rgba(7,19,27,.18);
+}
+.digital-card-front {
+  background: linear-gradient(135deg, #0d2433, #153b47 60%, #0b1e2a);
+  color: white;
+  padding: 26px 28px;
+}
+.digital-card-back {
+  background: linear-gradient(135deg, #f0d58a, #f7f2e3 38%, #d7ebee 100%);
+  color: var(--ink);
+  padding: 26px 28px;
+  transform: rotateY(180deg);
+}
+.card-brand-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+.card-brand-row img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+}
+.card-brand-row span {
+  font: 700 12px 'DM Mono', monospace;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.card-profile h3 {
+  margin: 0 0 6px;
+  font-size: 22px;
+  letter-spacing: -.04em;
+}
+.card-profile p {
+  margin: 0;
+  color: rgba(255,255,255,0.72);
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.front-card-image {
+  width: 100%;
+  height: 205px;
+  object-fit: contain;
+  margin-top: 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.04);
+}
+.card-link-list {
+  display: grid;
+  gap: 12px;
+  margin: 26px 0 22px;
+}
+.card-link-list a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.4);
+  font-weight: 700;
+}
+.card-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+.facebook-icon, .tiktok-icon { font-size: 18px; font-weight: 700; }
+
+@media (max-width: 800px) {
+  .digital-card { height: 440px; }
+  .card-profile h3 { font-size: 18px; }
+  .card-profile p { letter-spacing: .06em; }
+  .card-actions { flex-direction: column; align-items: stretch; }
+}
+

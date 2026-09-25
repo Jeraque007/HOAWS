@@ -1,0 +1,20 @@
+/* Dark closing call-to-action band (shared by the pages and the full-width ContactBand). */
+
+.dark-cta { background: var(--deep); color: var(--white); }
+.cta-inner { display: flex; align-items: center; justify-content: space-between; }
+.dark-cta .eyebrow { color: var(--gold); }
+.dark-cta h2 { margin: 0; font-size: clamp(3rem, 6vw, 6rem); letter-spacing: -.06em; }
+.contact-band { padding: 100px 0; }
+
+.dark-cta h2 em {
+  color: var(--cyan);
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+@media (max-width: 800px) {
+  .cta-inner { display: block; }
+  .dark-cta h2 { margin-bottom: 30px; }
+}
+

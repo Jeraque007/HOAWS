@@ -1,0 +1,25 @@
+/* Site footer. */
+
+.site-footer { padding: 75px 0 22px; color: rgba(255,255,255,.66); background: var(--ink); }
+.footer-grid { display: grid; grid-template-columns: 1.7fr 1fr 1fr; gap: 50px; padding-bottom: 65px; }
+.footer-logo { width: 105px; height: 105px; object-fit: contain; }
+.footer-note { max-width: 220px; color: rgba(255,255,255,.8); font-size: 13px; font-weight: 700; }
+.footer-links { display: flex; flex-direction: column; gap: 9px; font-size: 12px; }
+.footer-links .eyebrow { margin-bottom: 12px; color: var(--gold); }
+.footer-links a:hover { color: var(--cyan); }
+.socials { display: flex; gap: 16px; margin-top: 16px; }
+.facebook-icon, .tiktok-icon { font-size: 18px; font-weight: 700; }
+.footer-bottom { display: flex; justify-content: space-between; padding-top: 20px; border-top: 1px solid rgba(255,255,255,.12); color: rgba(255,255,255,.35); font: 10px 'DM Mono', monospace; text-transform: uppercase; }
+.footer-bottom a { display: flex; align-items: center; gap: 7px; }
+.footer-bottom a:hover { color: var(--gold); }
+
+.footer-links a:focus-visible,
+.footer-links a:active { color: var(--white); }
+
+@media (max-width: 800px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px 20px; }
+  .footer-grid > div:first-child { grid-column: 1 / -1; }
+  .footer-bottom { display: block; }
+  .footer-bottom a { margin-top: 10px; }
+}
+

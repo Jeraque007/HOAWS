@@ -1,0 +1,5 @@
+/* Published review list. */
+
+.review-quote blockquote { max-width: 490px; margin: 25px 0; font: 600 clamp(1.8rem, 3.2vw, 3.2rem)/1.2 'Playfair Display', serif; }
+.review-quote > p { color: #7b8788; font-size: 12px; }
+

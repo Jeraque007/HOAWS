@@ -4,9 +4,9 @@ import { ArrowUpRight, Check, ChevronRight, Download, ExternalLink, Instagram, M
 import { saveReview, getApprovedReviews } from './supabase'
 import ReviewAdmin from './ReviewAdmin'
 import TesseraLumen from './TesseraLumen'
-const floatingLogo = '/Hoaws_Translucent.png?v=3'
+const floatingLogo = '/Hoaws_Translucent.png?v=4'
 const homeLogo = floatingLogo
-const heroLogo = '/Hoaws%20Name%20Logo.png?v=3'
+const heroLogo = '/Hoaws%20Name%20Logo.png?v=4'
 
 const digitalCardFront = '/Hoaws.VCF.png'
 const whatsapp = 'https://wa.me/27740145161?text=Hi%20HOAWS%2C%20I%27d%20like%20to%20start%20a%20project.'
@@ -260,7 +260,7 @@ function Home() {
             <div className="hero-brand-lockup">
               <img src={heroLogo} className="hero-name-logo" alt="Hoaws Name Logo" />
             </div>
-            <div className="floating-logo-mark" aria-hidden="true">
+            <div className="floating-logo" aria-hidden="true">
               <img src={floatingLogo} alt="" />
             </div>
             <span className="visual-caption">

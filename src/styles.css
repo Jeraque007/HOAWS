@@ -326,15 +326,6 @@ button, input, textarea, select { font: inherit; }
   position: relative;
 }
 
-.hero-visual img {
-  width: min(100%, 500px);
-  object-fit: contain;
-  position: relative;
-  z-index: 1;
-  filter: drop-shadow(0 22px 25px rgba(0,0,0,.28));
-  animation: float 7s ease-in-out infinite;
-}
-
 .hero-brand-lockup {
   display: flex;
   justify-content: center;
@@ -348,6 +339,9 @@ button, input, textarea, select { font: inherit; }
   height: auto;
   max-width: none;
   object-fit: contain;
+  position: relative;
+  z-index: 1;
+  filter: drop-shadow(0 22px 25px rgba(0,0,0,.28));
 }
 
 .home-card-button {
@@ -520,33 +514,23 @@ button, input, textarea, select { font: inherit; }
   50% { transform: translateY(-10px) rotate(1deg); }
 }
 
-.floating-logo-mark {
+.floating-logo {
   position: absolute;
   left: 0;
   top: 18%;
-  width: 210px;
-  height: 210px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
+  width: 150px;
   z-index: 2;
-  background: radial-gradient(circle, rgba(92,227,237,0.18) 0%, rgba(92,227,237,0.06) 35%, rgba(0,0,0,0) 72%);
   transform: translateX(-18%) rotate(-10deg);
 }
 
-.floating-logo-mark::before {
-  content: '';
-  position: absolute;
-  inset: 18px;
-  border-radius: 50%;
-  border: 2px solid rgba(92,227,237,0.78);
-  box-shadow: 0 0 30px rgba(92,227,237,0.42);
-}
-
-.floating-logo-mark img {
-  width: 78%;
+.floating-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: none;
   object-fit: contain;
   filter: drop-shadow(0 0 20px rgba(92,227,237,0.42));
+  animation: float 7s ease-in-out infinite;
 }
 
 .hero-logo-frame {
@@ -956,7 +940,8 @@ button, input, textarea, select { font: inherit; }
   .card-button-link { margin-top: 10px; }
   .home-banner { top: 82px; }
   .hero-visual { position: absolute; width: 90vw; min-height: 300px; right: -20%; bottom: -45px; opacity: .64; }
-  .hero-visual img { width: 390px; }
+  .hero-visual .hero-name-logo { width: 390px; }
+  .floating-logo { width: 120px; }
   .orbit-one { width: 370px; height: 145px; }
   .orbit-two { width: 450px; height: 200px; }
   .visual-caption { display: none; }

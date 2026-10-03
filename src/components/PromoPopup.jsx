@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { ArrowUpRight, Pause, Play, X } from 'lucide-react'
+import { ArrowUpRight, Pause, Play, Volume2, VolumeX, X } from 'lucide-react'
 import { getActivePromo } from '../lib/supabase'
 import { isPromoLive } from '../lib/promo'
 import './PromoPopup.css'
@@ -53,16 +53,42 @@ function useReducedMotion() {
 }
 
 /**
- * The visual body of the popup: optional square media (MP4 or poster image)
- * plus the copy. Exported so the admin page can render the exact same thing as
- * a live preview.
- *
- *   autoPlayVideo - true in the popup (muted autoplay + a W3C 2.2.2 pause
- *                   control), false in the admin preview (native controls).
+ * One control in the media cluster: play/pause and the sound switch. Rendered as
+ * a real button in the popup and as an inert span in the admin preview, so the
+ * preview shows the controls without making the workspace page clickable (or
+ * noisy).
  */
-export function PromoCard({ promo, reducedMotion = false, autoPlayVideo = false }) {
+function MediaControl({ preview, label, pressed, onClick, className = '', children }) {
+  if (preview) {
+    return <span className={`promo-card-media-button ${className}`} aria-hidden="true">{children}</span>
+  }
+
+  return (
+    <button
+      className={`promo-card-media-button ${className}`}
+      type="button"
+      onClick={onClick}
+      aria-label={label}
+      aria-pressed={pressed}
+    >
+      {children}
+    </button>
+  )
+}
+
+/**
+ * The visual body of the popup: optional media (MP4 or poster image) plus the
+ * copy. Exported so the admin page can render the exact same thing as a live
+ * preview.
+ *
+ *   autoPlayVideo - true in the popup (muted autoplay + the pause and sound
+ *                   controls), false when native controls are wanted instead
+ *                   (the admin preview renders the same controls, inert).
+ */
+export function PromoCard({ promo, reducedMotion = false, autoPlayVideo = false, preview = false }) {
   const videoRef = useRef(null)
   const [playing, setPlaying] = useState(false)
+  const [muted, setMuted] = useState(true)
 
   const videoUrl = promo?.video_url || ''
   const imageUrl = promo?.image_url || ''
@@ -73,6 +99,7 @@ export function PromoCard({ promo, reducedMotion = false, autoPlayVideo = false 
   // iOS and Chrome only allow autoplay on a genuinely muted, inline video, so
   // set the properties on the element itself instead of trusting the attributes.
   // Muted autoplay is also what keeps this compliant with mobile autoplay rules.
+  // Sound is only ever started by toggleSound() below, from a real gesture.
   useEffect(() => {
     const video = videoRef.current
     if (!video || !autoplay) return
@@ -91,6 +118,43 @@ export function PromoCard({ promo, reducedMotion = false, autoPlayVideo = false 
       if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {})
     } else {
       video.pause()
+    }
+  }
+
+  /**
+   * The only way sound can start, on any browser: audible playback requires user
+   * activation, and every desktop and mobile browser blocks it otherwise. Both
+   * the unmute and the play() have to happen synchronously inside this click -
+   * WebKit pauses a video that becomes un-muted without a gesture, so deferring
+   * either to a promise or a timeout silently loses the activation.
+   *
+   * If the browser still refuses (or the file has no audio track) playback stays
+   * on and the control drops back to muted, so the icon never lies.
+   */
+  function toggleSound() {
+    const video = videoRef.current
+    if (!video) return
+
+    if (!video.muted) {
+      video.muted = true
+      setMuted(true)
+      return
+    }
+
+    video.muted = false
+    video.defaultMuted = false
+    video.removeAttribute('muted')
+    video.volume = 1                     // Ignored by iOS, which uses the hardware volume.
+    setMuted(false)
+
+    const attempt = video.play()
+    if (attempt && typeof attempt.catch === 'function') {
+      attempt.catch(() => {
+        video.muted = true
+        video.defaultMuted = true
+        video.setAttribute('muted', '')
+        setMuted(true)
+      })
     }
   }
 
@@ -113,16 +177,27 @@ export function PromoCard({ promo, reducedMotion = false, autoPlayVideo = false 
                 preload="metadata"
                 onPlay={() => setPlaying(true)}
                 onPause={() => setPlaying(false)}
+                onVolumeChange={(event) => setMuted(event.currentTarget.muted)}
               />
               {autoplay && (
-                <button
-                  className="promo-card-media-toggle"
-                  type="button"
-                  onClick={toggleVideo}
-                  aria-label={playing ? 'Pause the announcement video' : 'Play the announcement video'}
-                >
-                  {playing ? <Pause size={13} /> : <Play size={13} />}
-                </button>
+                <div className="promo-card-media-controls">
+                  <MediaControl
+                    preview={preview}
+                    onClick={toggleVideo}
+                    label={playing ? 'Pause the announcement video' : 'Play the announcement video'}
+                  >
+                    {playing ? <Pause size={13} /> : <Play size={13} />}
+                  </MediaControl>
+                  <MediaControl
+                    preview={preview}
+                    onClick={toggleSound}
+                    pressed={!muted}
+                    label={muted ? 'Turn the sound on' : 'Turn the sound off'}
+                    className={muted ? 'is-muted' : ''}
+                  >
+                    {muted ? <VolumeX size={13} /> : <Volume2 size={13} />}
+                  </MediaControl>
+                </div>
               )}
             </>
           ) : (
@@ -190,7 +265,7 @@ export function PromoDialog({
         </button>
       )}
 
-      <PromoCard promo={promo} reducedMotion={reducedMotion} autoPlayVideo={autoPlayVideo} />
+      <PromoCard promo={promo} reducedMotion={reducedMotion} autoPlayVideo={autoPlayVideo} preview={preview} />
 
       {preview ? (
         <span className="promo-popup-enter button button-primary">Enter site <ArrowUpRight size={16} /></span>

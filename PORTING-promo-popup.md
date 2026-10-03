@@ -45,6 +45,9 @@ Read this first. It is the spec; the code is just one implementation of it.
   motion` turns autoplay off and shows native video controls instead.
 - Video: muted, looped, `playsInline`, `preload="metadata"` — the only
   combination mobile browsers allow to autoplay. Poster image optional.
+- **Sound is off by default and starts only from the speaker control** — see
+  Part 12. No browser will play audio without a user gesture, so there is no code
+  path that turns sound on by itself.
 - Media **keeps its own aspect ratio**; tall 9:16 reels are letterboxed inside a
   height cap, never cropped.
 
@@ -504,6 +507,14 @@ and several of them caught real bugs while this was being built.
     compare the asset filenames in *view-source*, not the rendered page. A stale
     bundle compared against a fresh admin page is what made this feature look
     broken twice during development.
+12. **Sound.** All four buttons should be present live: close, play/pause, the
+    speaker control and Enter site. Press the speaker control → sound, and the
+    icon stops being tinted. Press it again → silence. On an iPhone with the
+    hardware ringer switch **off**, tap it: sound still plays inline (Part 12).
+13. **The file really has audio.** If the speaker control appears to do nothing,
+    check the MP4 has an audio track rather than assuming the code is wrong —
+    walking the box tree should show `SAMPLE ENTRY mp4a` next to the `avc1` video
+    entry. A video-only file has nothing to unmute.
 
 ---
 
@@ -563,6 +574,7 @@ until you have the bug.
 | Focus moved in, Tab trapped, focus restored | Keyboard users end up stuck behind the dialog or focused on the page underneath it |
 | Explicit pause control on the autoplaying video | WCAG 2.2.2 (pause, stop, hide) — autoplay with no control is a genuine accessibility defect, and `prefers-reduced-motion` users get no autoplay at all |
 | `noindex` in three places: meta, header, robots.txt | A private workspace getting crawled and indexed |
+| Sound only via an explicit control, with the unmute and `play()` synchronous in that click | Every browser blocks audible autoplay, and WebKit *pauses* a video that becomes un-muted outside a gesture — so a deferred or automatic unmute fails silently |
 
 ---
 
@@ -602,6 +614,79 @@ wrapping quotes are stripped); a line starting with a dash becomes the credit;
 everything else accumulates into the body, one line per line. If a block does not
 parse the way you want, fix the fields by hand — nothing is saved until you press
 Save.*
+
+---
+
+## Part 12 — Sound: what the browser requires
+
+**The rule in one line:** a `<video>` may autoplay **muted** anywhere, but it will
+only make sound after a real user gesture. That is policy in Chrome, Safari,
+Firefox and every mobile browser, not a bug to work around.
+
+So sound ships as an explicit control: a speaker button in the media cluster
+(bottom-right, next to play/pause). While muted it is tinted with the accent
+colour so it is noticeable; pressing it unmutes and plays; pressing it again
+silences.
+
+### Why the unmute and the `play()` must both happen inside the click
+
+WebKit's iOS media policy states that a gesture means the JavaScript must run
+*directly* from a `touchend`, `click`, `doubleclick` or `keydown` handler —
+`video.addEventListener('canplaythrough', () => video.play())` does **not** count —
+and that **"if a `<video>` element gains an audio track or becomes un-muted
+without a user gesture, playback will pause."**
+
+That last clause is the trap: unmuting outside a gesture does not merely stay
+silent, it **stops the video**. So `toggleSound()` sets `muted = false`, clears the
+`muted` attribute and calls `play()` synchronously — no `await`, no `setTimeout`,
+no promise in between. Chrome's own guidance has the same shape: muted autoplay
+plus an unmute button whose click handler sets `video.muted = false`.
+
+### What each platform requires
+
+| Platform | To hear sound |
+| --- | --- |
+| Chrome / Edge, desktop | Click the speaker control. Or click anywhere on the site first — after an interaction with the domain, Chrome allows audible playback on that page. Chrome also allows it once its Media Engagement Index threshold is crossed, or if the site is installed as a PWA. |
+| Safari, macOS | The same click, unless the visitor set *Auto-Play → Allow All Auto-Play* for the site. |
+| Firefox, desktop | The same click, unless the visitor granted the site autoplay permission. |
+| Android (Chrome, Samsung, …) | Tap the speaker control. Media volume must be up; a silent / Do-Not-Disturb profile may mute media depending on the OEM. |
+| iPhone / iPad, any browser | Tap the speaker control. Every iOS browser is WebKit and behaves identically. `playsinline` must be present or iOS takes the video full screen. The hardware silent switch does **not** mute a `<video>` element — see below. |
+| Installed PWA / home-screen app | May autoplay with sound with no click at all, at the platform's discretion. |
+
+### The iOS silent switch does not affect this (and you don't need `navigator.audioSession`)
+
+iOS routes each audio API to its own session category:
+
+- `<audio>` / `<video>` **elements** → the media (playback) channel, which the
+  hardware silent/ringer switch does **not** mute.
+- the **Web Audio API** → the ringer/ambient channel, which the switch **does**
+  mute (WebKit bug 237322). The modern fix for that is
+  `navigator.audioSession.type = 'playback'` (iOS 17+), set synchronously inside
+  the gesture, with a silent-buffer fallback for older devices.
+
+This popup uses a plain `<video>` element and no Web Audio at all, so **sound
+plays on an iPhone with the ringer switch off**, and `navigator.audioSession` is
+not needed. Worth remembering if you ever add sound effects or an audio graph to
+the same page — those need the AudioSession handling; the video does not.
+
+### What is not possible, and why not to chase it
+
+Audible autoplay on load is permitted only when the visitor has already interacted
+with your domain, or Chrome's **Media Engagement Index** has enough history for the
+site, or the site is installed as a PWA / added to the home screen, or the visitor
+pre-granted autoplay. None of those can be forced, and all of them exist to stop
+exactly what you would be doing: a page that starts making noise unprompted is the
+quickest way to lose a visitor. Muted autoplay plus a visible sound control is the
+pattern Instagram, Facebook, Twitter and YouTube all use.
+
+### In the admin preview
+
+The preview renders the same two media controls, but as inert spans
+(`aria-hidden`, no click handler, `pointer-events: none`). The workspace page
+therefore never makes noise on its own, and the preview stays a picture rather
+than a working player — which is also why the preview can be trusted to show the
+popup as it really is.
+
 
 
 

@@ -3,7 +3,7 @@ import SEO from '../components/SEO'
 import PageHero from '../components/PageHero'
 import SectionIntro from '../components/SectionIntro'
 import { whatsapp } from '../lib/site'
-import digitalCardFront from '../assets/hoaws-vcf.png'
+import digitalCardFront from '../assets/hoaws-vcf.webp'
 import './About.css'
 
 export default function About() {
@@ -19,7 +19,7 @@ export default function About() {
       <section className="section about-section">
         <div className="container about-grid">
           <div className="about-image">
-            <img src={digitalCardFront} alt="HOAWS digital business card" />
+            <img src={digitalCardFront} alt="HOAWS digital business card" loading="lazy" decoding="async" />
           </div>
           <div className="about-copy">
             <p className="eyebrow">The person behind it</p>

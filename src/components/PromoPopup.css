@@ -1,0 +1,156 @@
+/* Home page announcement popup (uploaded MP4 + copy) and the card it shares with
+   the /promos/admin preview. Sized for phones first: safe-area padding, dvh
+   caps, 44px tap targets and no horizontal overflow. */
+
+.promo-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 90;                     /* Above the z-index 10 header */
+  display: grid;
+  place-items: center;
+  padding: max(14px, env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) max(14px, env(safe-area-inset-bottom)) max(14px, env(safe-area-inset-left));
+  background: rgba(4, 16, 23, .74);
+  animation: promo-popup-fade .28s ease both;
+  overscroll-behavior: contain;
+}
+
+@keyframes promo-popup-fade { from { opacity: 0; } to { opacity: 1; } }
+
+.promo-popup-dialog {
+  position: relative;
+  width: min(100%, 420px);
+  max-height: 86vh;                 /* Fallback for browsers without dvh */
+  max-height: 86dvh;
+  display: grid;
+  gap: 12px;
+  overflow: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: 16px;
+  background: var(--ink);
+  box-shadow: 0 30px 80px rgba(4, 16, 23, .5);
+  animation: promo-popup-rise .36s ease both;
+}
+
+.promo-popup-dialog:focus { outline: none; }
+@keyframes promo-popup-rise {
+  from { opacity: 0; transform: translateY(16px) scale(.98); }
+  to { opacity: 1; transform: none; }
+}
+
+.promo-popup-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  color: var(--white);
+  background: rgba(7, 19, 27, .66);
+  cursor: pointer;
+}
+.promo-popup-close:hover { background: rgba(7, 19, 27, .9); }
+.promo-popup-close:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+.promo-popup-enter { width: 100%; }
+
+/* ============================================
+   SHARED CARD (popup body + admin preview)
+   ============================================ */
+.promo-card { display: grid; overflow: hidden; color: var(--white); background: var(--ink); }
+
+/* The media keeps its own aspect ratio instead of being forced square. Creatives
+   are uploaded as 9:16 (576x1024) reels as often as they are square, and a square
+   box with object-fit:cover cropped those to the middle of the frame. contain +
+   a height cap shows the whole thing and letterboxes rather than crops. */
+.promo-card-media {
+  position: relative;
+  display: grid;
+  place-items: center;
+  max-height: 46vh;
+  max-height: 46dvh;
+  overflow: hidden;
+  background: #041018;
+}
+
+.promo-card-video, .promo-card-image {
+  display: block;
+  width: 100%;
+  height: auto;                      /* Source ratio wins - nothing is cropped. */
+  max-height: 46vh;                  /* A tall portrait cannot swallow the copy. */
+  max-height: 46dvh;
+  object-fit: contain;               /* Letterbox inside the cap, never crop. */
+}
+.promo-card-video { background: #041018; }
+
+.promo-card-media-toggle {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  color: var(--white);
+  background: rgba(7, 19, 27, .66);
+  cursor: pointer;
+}
+.promo-card-media-toggle:hover { background: rgba(7, 19, 27, .9); }
+.promo-card-media-toggle:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+.promo-card-copy { display: grid; gap: 9px; padding: 18px 16px 17px; }
+.promo-card-kicker { margin: 0; color: var(--cyan); font: 500 10px 'DM Mono', monospace; letter-spacing: .2em; text-transform: uppercase; }
+.promo-card-title { margin: 0; color: var(--white); font: 800 clamp(1.6rem, 6vw, 2.2rem)/1.06 'Manrope', sans-serif; letter-spacing: -.03em; }
+.promo-card-body { margin: 0; color: rgba(255, 255, 255, .78); font-size: 13.5px; line-height: 1.6; white-space: pre-line; }
+.promo-card-quote { margin: 2px 0 0; padding-left: 13px; border-left: 2px solid var(--gold); }
+.promo-card-quote p { margin: 0; color: var(--gold-soft); font: italic 600 15px/1.5 'Playfair Display', serif; }
+.promo-card-quote cite { display: block; margin-top: 5px; color: rgba(255, 255, 255, .58); font: 10px 'DM Mono', monospace; font-style: normal; letter-spacing: .1em; text-transform: uppercase; }
+.promo-card-cta { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; color: var(--cyan); font: 700 12px 'Manrope', sans-serif; }
+.promo-card-cta:hover { color: var(--white); }
+.promo-card-cta:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+/* ============================================
+   ADMIN PREVIEW (same dialog, inline)
+   --------------------------------------------
+   /promos/admin renders PromoPreview, which is this same markup. It sits in the
+   page instead of over it, and the height caps are lifted so the whole popup is
+   always visible (the live one caps itself to the viewport on short screens).
+   ============================================ */
+.promo-popup.promo-popup-preview {
+  position: relative;
+  inset: auto;
+  z-index: 0;
+  padding: 18px;
+  background: var(--ink);           /* The site's own dark page behind the popup */
+  animation: none;
+}
+.promo-popup-preview .promo-popup-dialog { max-height: none; animation: none; }
+.promo-popup-preview .promo-card-media { max-height: none; }
+.promo-popup-preview .promo-popup-close,
+.promo-popup-preview .promo-popup-enter { pointer-events: none; }
+
+/* ============================================
+   PHONES
+   ============================================ */
+@media (max-width: 800px) {
+  .promo-popup {
+    padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+  }
+  .promo-popup-dialog { width: 100%; max-height: 88dvh; gap: 10px; padding: 12px; }
+  .promo-popup-close { top: 6px; right: 6px; width: 40px; height: 40px; }
+  .promo-card-media { max-height: 40dvh; }
+  .promo-card-media-toggle { width: 38px; height: 38px; }
+  .promo-card-copy { padding: 15px 13px 14px; }
+  .promo-popup-enter { min-height: 46px; }
+}
+
+/* Landscape phones and other short viewports: give the copy the room it needs. */
+@media (max-height: 560px) {
+  .promo-popup-dialog { max-height: 94dvh; }
+  .promo-card-media { max-height: 36dvh; }
+}

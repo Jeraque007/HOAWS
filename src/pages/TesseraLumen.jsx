@@ -1,14 +1,14 @@
 import { ArrowUpRight, Download, ExternalLink, MessageCircle, Smartphone, Sparkles } from 'lucide-react'
 import SEO from '../components/SEO'
-import { whatsapp } from '../lib/site'
-import tesseraLumenOg from '../assets/tessera-lumen-og.jpg'
-import tesseraLumenLogo from '../assets/tessera-lumen-logo.png'
-import tesseraLumenArt from '../assets/tessera-lumen.png'
-import tesseraAppIcon from '../assets/icon-512.png'
+import tesseraLumenOg from '../assets/tessera-lumen-og.webp'
+import tesseraLumenLogo from '../assets/tessera-lumen-logo.webp'
+import tesseraLumenArt from '../assets/tessera-lumen.webp'
+import tesseraAppIcon from '../assets/icon-512.webp'
 import './TesseraLumen.css'
 
 const appUrl = 'https://app.963.co.za'
 const downloadUrl = 'https://apkpure.com/p/com.godcode963.app'
+const bookSessionWhatsApp = 'https://wa.me/27848331128?text=Hi%20SAE%2C%20I%27d%20like%20to%20book%20a%20session.'
 
 const features = [
   ['Tarot Readings', 'Purchase and receive intuitive tarot card readings online.'],
@@ -38,12 +38,17 @@ export default function TesseraLumen() {
               </a>
               <a className="tessera-text-link" href="#tessera-experience">Explore the experience <ExternalLink size={14} /></a>
             </div>
-            <div className="tessera-offer"><Sparkles size={15} /><span>Free intuitive tarot readings for the first 100 customers.</span></div>
+            <div className="tessera-offer"><Sparkles size={15} /><span>Free intuitive tarot readings for the first <strong>100</strong> customers.</span></div>
           </div>
           <div className="tessera-hero-visual">
-            <div className="tessera-poster-frame"><img src={tesseraLumenOg} alt="Tessera Lumen Oracle of Sophia tarot artwork" /></div>
-            <div className="tessera-logo-mark"><img src={tesseraLumenLogo} alt="Tessera Lumen logo" /></div>
-            <p className="tessera-visual-label">Ask. Draw. Receive. Reflect.</p>
+            <div className="tessera-poster-frame"><img src={tesseraLumenOg} alt="Tessera Lumen Oracle of Sophia tarot artwork" fetchPriority="high" decoding="async" /></div>
+            <div className="tessera-logo-mark"><img src={tesseraLumenLogo} alt="Tessera Lumen logo" loading="lazy" decoding="async" /></div>
+            <p className="tessera-visual-label">
+              <span>Ask</span>
+              <span>Draw</span>
+              <span>Receive</span>
+              <span>Reflect</span>
+            </p>
           </div>
         </div>
       </section>
@@ -69,7 +74,7 @@ export default function TesseraLumen() {
           </div>
           <div className="tessera-app-grid">
             <article className="tessera-art-card">
-              <div className="tessera-art-image"><img src={tesseraLumenArt} alt="Tessera Lumen Oracle of Sophia card artwork" /></div>
+              <div className="tessera-art-image"><img src={tesseraLumenArt} alt="Tessera Lumen Oracle of Sophia card artwork" loading="lazy" decoding="async" /></div>
               <div className="tessera-art-copy">
                 <p className="eyebrow">Web experience</p>
                 <h3>Open the reading room.</h3>
@@ -78,7 +83,7 @@ export default function TesseraLumen() {
               </div>
             </article>
             <article className="tessera-download-card">
-              <img className="tessera-app-icon" src={tesseraAppIcon} alt="Tessera Lumen app icon" />
+              <img className="tessera-app-icon" src={tesseraAppIcon} alt="Tessera Lumen app icon" loading="lazy" decoding="async" />
               <div className="tessera-card-label"><Smartphone size={15} /> Android app</div>
               <h2>Download the App</h2>
               <p>Get Tessera Lumen — Oracle of Sophia on your Android device. Access your tarot readings, receive guidance, and explore your path anytime, anywhere.</p>
@@ -100,7 +105,7 @@ export default function TesseraLumen() {
       <section className="tessera-cta">
         <div className="container tessera-cta-inner">
           <div><p className="eyebrow">Prefer a personal session?</p><h2>Want a Personal Session Instead?</h2><p>For one-on-one healing, coaching, or integration work, book directly via WhatsApp.</p></div>
-          <a className="button button-gold" href={whatsapp} target="_blank" rel="noopener noreferrer">Book via WhatsApp <MessageCircle size={17} /></a>
+          <a className="button button-gold" href={bookSessionWhatsApp} target="_blank" rel="noopener noreferrer">Book via WhatsApp <MessageCircle size={17} /></a>
         </div>
       </section>
 

@@ -5,7 +5,7 @@
 .card-stack { display: flex; justify-content: center; }
 .digital-card {
   width: min(100%, 560px);
-  height: 420px;
+  height: 470px;
   border: 0;
   background: transparent;
   padding: 0;
@@ -100,7 +100,7 @@
   justify-content: flex-start;
 }
 
-.facebook-icon, .tiktok-icon { font-size: 18px; font-weight: 700; }
+.facebook-icon, .tiktok-icon, .google-icon { font-size: 18px; font-weight: 700; }
 
 @media (max-width: 800px) {
   .digital-card { height: 440px; }

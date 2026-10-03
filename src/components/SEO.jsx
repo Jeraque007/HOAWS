@@ -17,11 +17,30 @@ function upsertMeta(attribute, name, content) {
   element.setAttribute('content', content)
 }
 
+function upsertJsonLd(id, data) {
+  let script = document.getElementById(id)
+  if (!script) {
+    script = document.createElement('script')
+    script.id = id
+    script.type = 'application/ld+json'
+    document.head.appendChild(script)
+  }
+  script.textContent = JSON.stringify(data)
+}
+
 export default function SEO({ title, description, path }) {
   const { pathname } = useLocation()
   const resolvedPath = path || pathname
   const resolvedTitle = title || defaultTitle
   const resolvedDescription = description || defaultDescription
+  // The private workspaces must never appear in search results. Derive this
+  // from the resolved path (not a prop) so the baseline and page-level <SEO />
+  // instances always agree, regardless of effect ordering.
+  const privatePaths = ['/reviews/admin', '/promos/admin']
+  const normalizedPath = resolvedPath.replace(/\/+$/, '') || '/'
+  const resolvedRobots = privatePaths.includes(normalizedPath)
+    ? 'noindex, nofollow'
+    : 'index, follow'
 
   useEffect(() => {
     document.title = resolvedTitle
@@ -31,6 +50,7 @@ export default function SEO({ title, description, path }) {
     upsertMeta('property', 'og:description', resolvedDescription)
     upsertMeta('name', 'twitter:title', resolvedTitle)
     upsertMeta('name', 'twitter:description', resolvedDescription)
+    upsertMeta('name', 'robots', resolvedRobots)
 
     let canonical = document.head.querySelector('link[rel="canonical"]')
     if (!canonical) {
@@ -38,8 +58,20 @@ export default function SEO({ title, description, path }) {
       canonical.setAttribute('rel', 'canonical')
       document.head.appendChild(canonical)
     }
-    canonical.setAttribute('href', new URL(resolvedPath, siteUrl).toString())
-  }, [resolvedTitle, resolvedDescription, resolvedPath])
+    const pageUrl = new URL(resolvedPath, siteUrl).toString()
+    canonical.setAttribute('href', pageUrl)
+
+    upsertJsonLd('seo-page-json-ld', {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      '@id': `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: resolvedTitle,
+      description: resolvedDescription,
+      inLanguage: 'en',
+      isPartOf: { '@id': `${siteUrl}/#website` },
+    })
+  }, [resolvedTitle, resolvedDescription, resolvedPath, resolvedRobots])
 
   return null
 }

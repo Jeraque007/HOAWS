@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /reviews/admin
 
 Sitemap: https://www.hoaws.co.za/sitemap.xml

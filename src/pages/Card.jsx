@@ -2,9 +2,9 @@ import { useState } from 'react'
 import { Instagram, MessageCircle, Phone } from 'lucide-react'
 import SEO from '../components/SEO'
 import PageHero from '../components/PageHero'
-import { contactEmail, socials, whatsapp } from '../lib/site'
-import homeLogo from '../assets/hoaws-translucent.png'
-import digitalCardFront from '../assets/hoaws-vcf.png'
+import { contactEmail, contactPhoneTel, googleBusiness, socials, whatsapp } from '../lib/site'
+import homeLogo from '../assets/hoaws-translucent.webp'
+import digitalCardFront from '../assets/hoaws-vcf.webp'
 import './Card.css'
 
 const [instagram, facebook, tiktok] = socials
@@ -48,19 +48,19 @@ export default function Card() {
             <div className="digital-card-inner">
               <div className="digital-card-face digital-card-front">
                 <div className="card-brand-row">
-                  <img src={homeLogo} alt="HOAWS" />
+                  <img src={homeLogo} alt="HOAWS" loading="lazy" decoding="async" />
                   <span>HOAWS</span>
                 </div>
                 <div className="card-profile">
                   <h3>Digital &amp; Business Transformation</h3>
                   <p>Strategy • Websites • Social • Brand systems</p>
                 </div>
-                <img className="front-card-image" src={digitalCardFront} alt="HOAWS business card front" />
+                <img className="front-card-image" src={digitalCardFront} alt="HOAWS business card front" loading="lazy" decoding="async" />
               </div>
 
               <div className="digital-card-face digital-card-back">
                 <div className="card-brand-row">
-                  <img src={homeLogo} alt="HOAWS" />
+                  <img src={homeLogo} alt="HOAWS" loading="lazy" decoding="async" />
                   <span>Connect</span>
                 </div>
 
@@ -70,11 +70,12 @@ export default function Card() {
                   <a href={instagram.url} target="_blank" rel="noreferrer"><Instagram size={16} /> Instagram</a>
                   <a href={facebook.url} target="_blank" rel="noreferrer"><span className="facebook-icon">f</span> Facebook</a>
                   <a href={tiktok.url} target="_blank" rel="noreferrer"><span className="tiktok-icon">♪</span> TikTok</a>
+                  <a href={googleBusiness} target="_blank" rel="noreferrer"><span className="google-icon">G</span> Google Business</a>
                 </div>
 
                 <div className="card-actions">
                   <a className="button button-primary" href="/hoaws.vcf" download>Save contact</a>
-                  <a className="button button-gold" href={whatsapp} target="_blank" rel="noreferrer">Call now</a>
+                  <a className="button button-gold" href={contactPhoneTel}>Call now</a>
                 </div>
               </div>
             </div>

@@ -81,15 +81,22 @@
   display: flex;
   align-items: center;
   gap: 9px;
-  max-width: 440px;
+  max-width: 470px;
   margin-top: 42px;
   padding-top: 17px;
   border-top: 1px solid rgba(255,255,255,.18);
-  color: rgba(255,255,255,.57);
-  font: 10px 'DM Mono', monospace;
+  color: rgba(255,255,255,.7);
+  font: 14px/1.6 'DM Mono', monospace;
   letter-spacing: .04em;
 }
 .tessera-offer svg { flex: 0 0 auto; color: var(--gold); }
+.tessera-offer strong {
+  color: var(--gold);
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.45em;
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
 
 .tessera-hero-visual { position: relative; min-height: 535px; display: flex; align-items: center; justify-content: center; }
 .tessera-poster-frame {
@@ -117,11 +124,21 @@
   position: absolute;
   right: 0;
   bottom: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 7px;
   margin: 0;
-  color: rgba(255,255,255,.55);
-  font: 10px 'DM Mono', monospace;
-  letter-spacing: .16em;
+}
+.tessera-visual-label span {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--gold);
+  color: var(--ink);
+  font: 700 15px 'Manrope', sans-serif;
+  letter-spacing: .06em;
   text-transform: uppercase;
+  box-shadow: 0 10px 24px rgba(239,189,83,.25);
 }
 
 .tessera-intro { padding: 110px 0; border-top: 1px solid var(--line); background: var(--cream); }
@@ -215,7 +232,8 @@
   .tessera-hero-visual { min-height: 370px; }
   .tessera-poster-frame { width: min(100%, 290px); }
   .tessera-logo-mark { bottom: 15px; width: 112px; padding: 9px; }
-  .tessera-visual-label { right: 0; bottom: -3px; font-size: 8px; }
+  .tessera-visual-label { right: 0; bottom: -3px; gap: 5px; }
+  .tessera-visual-label span { padding: 6px 11px; font-size: 12px; }
   .tessera-art-card { grid-template-columns: 1fr; }
   .tessera-art-image { min-height: 310px; }
   .tessera-art-copy { padding: 30px 25px 34px; }

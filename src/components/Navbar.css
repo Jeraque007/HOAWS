@@ -17,12 +17,12 @@
 .brand {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 0px;
 }
 
 .brand img {
-  width: 52px;
-  height: 52px;
+  width: auto;
+  height: 36px;
   object-fit: contain;
 }
 
@@ -78,7 +78,7 @@
 
 @media (max-width: 800px) {
   .header-inner { height: 82px; }
-  .brand img { width: 44px; height: 44px; }
+  .brand img { width: auto; height: 28px; }
   .brand span { font-size: .75rem; }
   .menu-toggle { display: block; position: relative; z-index: 11; }
   .main-nav {

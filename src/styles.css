@@ -1,6 +1,7 @@
 /* HOAWS global stylesheet - design tokens, resets, base layout, buttons and shared utilities. */
 
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600;1,700&display=swap');
+/* Google Fonts now load in index.html via preconnect + <link> (see that file);
+   a CSS @import here would force a render-blocking request chain on mobile. */
 
 :root {
   --ink: #07131b;
@@ -17,6 +18,20 @@
 }
 
 * { box-sizing: border-box; }
+/* Fonts load via <link rel="stylesheet"> + preconnect in index.html instead of
+   a CSS @import, so font CSS no longer sits in a render-blocking chain after
+   this bundle is parsed. */
+/* Route-level code-splitting fallback shown while a lazy route chunk loads. */
+.route-loading { min-height: 60vh; display: grid; place-items: center; }
+.route-loading span {
+  width: 34px;
+  height: 34px;
+  border: 3px solid rgba(9, 38, 49, .15);
+  border-top-color: var(--cyan-deep);
+  border-radius: 50%;
+  animation: route-spin .7s linear infinite;
+}
+@keyframes route-spin { to { transform: rotate(360deg); } }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
@@ -39,6 +54,8 @@ button, input, textarea, select { font: inherit; }
   letter-spacing: .15em;
   text-transform: uppercase;
 }
+/* Kicker removed site-wide */
+.eyebrow { display: none !important; }
 .button {
   display: inline-flex;
   align-items: center;

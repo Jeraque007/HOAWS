@@ -1,17 +1,22 @@
 /* Home page: announcement banner, hero, digital-card promo, statement, services preview, work preview, closing CTA. */
 
+/* Kicker removed - hide the empty eyebrow placeholder */
+.eyebrow:empty { display: none; }
+
+/* ============================================
+   ANNOUNCEMENT BANNER
+   ============================================ */
 .home-banner {
   position: absolute;
-  top: 105px;
+  top: 105px;              /* Pinned directly below the 105px header */
   right: 0;
   left: 0;
   z-index: 4;
   overflow: hidden;
   border-top: 1px solid rgba(92,227,237,.28);
   border-bottom: 1px solid rgba(92,227,237,.28);
-  background: rgba(7,19,27,.38);
-  color: rgba(255,255,255,.72);
-  backdrop-filter: blur(8px);
+  background: #fff;        /* White background - matches the hero bar */
+  color: rgba(7,19,27,.78);
 }
 
 .home-banner-track {
@@ -20,22 +25,37 @@
   align-items: center;
   gap: 20px;
   padding: 9px 0;
-  animation: banner-scroll 24s linear infinite;
-  font: 10px 'DM Mono', monospace;
+  animation: banner-scroll 15s linear infinite;
+  font: 14px 'DM Mono', monospace;
   letter-spacing: .12em;
   text-transform: uppercase;
   white-space: nowrap;
 }
 
 .home-banner-track > span[aria-hidden="true"] { color: var(--gold); }
-.home-banner-track a { color: var(--cyan); }
+.home-banner-track a { color: var(--cyan-deep); }  /* Dark cyan reads on the white bar */
+.home-banner-track a:hover { text-decoration: underline; }
+
+/* Pause on hover - works when hovering anywhere on the banner, including the link */
 .home-banner:hover .home-banner-track,
-.home-banner:focus-within .home-banner-track { animation-play-state: paused; }
+.home-banner:focus-within .home-banner-track { 
+  animation-play-state: paused; 
+}
+
+/* Pause specifically when hovering or focusing the "Open Tessera Lumen" link */
+.home-banner-track:has(a:hover),
+.home-banner-track:has(a:focus-visible) {
+  animation-play-state: paused;
+}
 
 @keyframes banner-scroll {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(-50%); } /* Full loop with 2 identical groups */
 }
+
+/* ============================================
+   HERO
+   ============================================ */
 .hero {
   min-height: 780px;
   color: var(--white);
@@ -103,7 +123,15 @@
 .hero h1 {
   margin-bottom: 28px;
   font-size: clamp(3.7rem, 7vw, 6.7rem);
+  line-height: .96;
   max-width: 700px;
+}
+
+.hero h1 em {
+  color: var(--cyan);
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-style: italic;
 }
 
 .hero-text {
@@ -120,6 +148,7 @@
   margin-top: 28px;
   margin-bottom: 22px;
 }
+
 .card-button-link {
   display: inline-flex;
   align-items: center;
@@ -145,6 +174,9 @@
   font-size: 11px;
 }
 
+/* ============================================
+   HERO VISUAL (floating crest)
+   ============================================ */
 .hero-visual {
   min-height: 500px;
   display: flex;
@@ -152,10 +184,31 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  gap: 10px;
 }
 
-/* Hero tag line — carries the Hoaws Name Logo strip and nothing else. */
+.hero-floating-logo {
+  position: relative;
+  z-index: 1;
+  display: block;
+  flex: 0 0 auto;
+  width: clamp(250px, 30vw, 400px);
+  height: auto;
+  max-width: none;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 24px rgba(0,0,0,.32));
+  animation: crest-float 7s ease-in-out infinite;
+}
+
+/* Gentle float, no tilt */
+@keyframes crest-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
 .hero-tag-line {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   width: 100%;
@@ -163,15 +216,66 @@
 
 .hero-tag-line-logo {
   display: block;
-  flex: 0 0 auto;
   width: min(100%, 500px);
   height: auto;
   max-width: none;
   object-fit: contain;
+  filter: drop-shadow(0 10px 15px rgba(0,0,0,.25));
+}
+
+.hero-orbit {
+  position: absolute;
+  border: 1px solid rgba(92,227,237,.25);
+  border-radius: 50%;
+  transform: rotate(-32deg);
+}
+
+.orbit-one { width: 480px; height: 190px; }
+.orbit-two {
+  width: 580px;
+  height: 260px;
+  border-color: rgba(239,189,83,.22);
+  transform: rotate(26deg);
+}
+
+.visual-caption {
+  position: absolute;
+  right: 5px;
+  bottom: 65px;
+  color: rgba(255,255,255,.42);
+  font: 10px/1.5 'DM Mono', monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.hero-footer {
   position: relative;
   z-index: 1;
-  filter: drop-shadow(0 22px 25px rgba(0,0,0,.28));
+  display: flex;
+  justify-content: space-between;
+  color: rgba(255,255,255,.45);
+  font: 10px 'DM Mono', monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
+
+.scroll-cue { display: flex; align-items: center; gap: 12px; }
+.scroll-cue span { width: 48px; height: 1px; display: inline-block; background: var(--gold); }
+
+.visual-tag {
+  position: absolute;
+  right: 20px;
+  bottom: 40px;
+  color: rgba(255,255,255,.47);
+  font: 10px/1.8 'DM Mono', monospace;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+/* ============================================
+   DIGITAL CARD SECTION
+   ============================================ */
 .home-card-button {
   position: relative;
   display: block;
@@ -297,93 +401,10 @@
   font-family: 'Playfair Display', serif;
   font-weight: 600;
 }
-.hero-orbit {
-  position: absolute;
-  border: 1px solid rgba(92,227,237,.25);
-  border-radius: 50%;
-  transform: rotate(-32deg);
-}
 
-.orbit-one { width: 480px; height: 190px; }
-.orbit-two {
-  width: 580px;
-  height: 260px;
-  border-color: rgba(239,189,83,.22);
-  transform: rotate(26deg);
-}
-
-.visual-caption {
-  position: absolute;
-  right: 5px;
-  bottom: 65px;
-  color: rgba(255,255,255,.42);
-  font: 10px/1.5 'DM Mono', monospace;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
-.hero-footer {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: space-between;
-  color: rgba(255,255,255,.45);
-  font: 10px 'DM Mono', monospace;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
-.scroll-cue { display: flex; align-items: center; gap: 12px; }
-.scroll-cue span { width: 48px; height: 1px; display: inline-block; background: var(--gold); }
-
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(0); }
-  50% { transform: translateY(-10px) rotate(1deg); }
-}
-/* Home floating logo — anchored in its own top-left bay (clear of the fixed header,
-   the ticker banner and the centred hero tag line strip) so nothing but the crest
-   ever occupies this space. */
-.floating-logo {
-  position: absolute;
-  left: 0;
-  top: 68px;
-  width: 116px;
-  z-index: 2;
-  transform: translateX(-18%) rotate(-10deg);
-}
-
-.floating-logo img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-width: none;
-  object-fit: contain;
-  filter: drop-shadow(0 20px 24px rgba(0,0,0,.32));
-  animation: float 7s ease-in-out infinite;
-}
-
-.hero-logo-frame {
-  position: relative;
-  width: min(100%, 640px);
-  padding: 20px 22px 10px;
-}
-
-.hero-logo-frame img {
-  width: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 14px 22px rgba(0,0,0,.18));
-}
-
-.visual-tag {
-  position: absolute;
-  right: 20px;
-  bottom: 40px;
-  color: rgba(255,255,255,.47);
-  font: 10px/1.8 'DM Mono', monospace;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  text-align: right;
-}
+/* ============================================
+   STATEMENT
+   ============================================ */
 .statement { background: var(--gold); }
 .statement-inner {
   display: grid;
@@ -398,12 +419,21 @@
   font-size: clamp(2.7rem, 5vw, 5.2rem);
   letter-spacing: -.06em;
 }
+.statement h2 span {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-style: italic;
+}
 .statement-copy {
   max-width: 520px;
   margin: 0 0 0 auto;
   color: rgba(7,19,27,.7);
   font-size: 17px;
 }
+
+/* ============================================
+   SERVICES
+   ============================================ */
 .service-list { border-top: 1px solid var(--line); }
 .service-row {
   display: grid;
@@ -421,22 +451,18 @@
 .tag-list { display: flex; flex-wrap: wrap; gap: 5px; margin-left: auto; }
 .tag-list span { padding: 5px 8px; background: #e8ebe6; color: #77858a; font: 9px 'DM Mono', monospace; text-transform: uppercase; }
 .row-arrow { color: var(--gold); }
-.work-section { background: #e8ebe6; }
-
-.hero h1 em {
-  color: var(--cyan);
-  font-family: 'Playfair Display', serif;
-  font-weight: 600;
-  font-style: italic;
-}
-.statement h2 span {
-  font-family: 'Playfair Display', serif;
-  font-weight: 600;
-  font-style: italic;
-}
 .service-number { color: var(--cyan-deep); font: 12px 'DM Mono', monospace; }
 
+/* ============================================
+   WORK
+   ============================================ */
+.work-section { background: #e8ebe6; }
+
+/* ============================================
+   MOBILE
+   ============================================ */
 @media (max-width: 800px) {
+  .home-banner { top: 82px; }   /* Matches the 82px mobile header */
   .hero { min-height: 760px; }
   .hero-grid { min-height: 680px; display: flex; flex-direction: column; align-items: stretch; gap: 0; }
   .hero-copy { padding-top: 160px; }
@@ -444,15 +470,17 @@
   .hero-text { font-size: 15px; max-width: 330px; }
   .hero-actions { flex-wrap: wrap; }
   .card-button-link { margin-top: 10px; }
-  .home-banner { top: 82px; }
-  .hero-visual { position: absolute; width: 90vw; min-height: 340px; right: -20%; bottom: -45px; opacity: .64; }
-  .hero-visual .hero-tag-line-logo { width: 390px; }
-  .floating-logo { top: 12px; width: 100px; }
-  .orbit-one { width: 370px; height: 145px; }
-  .orbit-two { width: 450px; height: 200px; }
+
+  .hero-visual { position: static; width: 100%; min-height: 0; margin-top: 18px; opacity: 1; gap: 20px; }
+  .hero-floating-logo { width: clamp(200px, 50vw, 300px); }
+  .hero-tag-line-logo { width: min(100%, 340px); }
+
+  .orbit-one { width: 88%; height: 104px; }
+  .orbit-two { width: 100%; height: 132px; }
   .visual-caption { display: none; }
   .hero-footer { font-size: 8px; }
   .scroll-cue { display: none; }
+
   .home-card-section-copy { max-width: 560px; }
   .home-card-button { max-width: 640px; }
   .statement-copy { margin: 0; }
@@ -464,4 +492,3 @@
   .row-arrow { margin-top: 4px; }
   .statement-inner, .home-card-section-inner { grid-template-columns: 1fr; gap: 25px; }
 }
-

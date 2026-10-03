@@ -1,31 +1,31 @@
-import sae from '../assets/sae.png'
-import arcedge from '../assets/arcedge-construction.jpeg'
-import tesseraLumen from '../assets/tessera-lumen.png'
-import lumenSocial from '../assets/lumen-social.jpg'
-import glassKingMirror from '../assets/glass-king-mirror.png'
-import candiedRevenge from '../assets/candied-revenge.png'
-import cleanScene from '../assets/clean-scene.png'
-import bettorAppsFurniture from '../assets/bettor-apps-furniture.png'
-import damonsDairy from '../assets/damons-dairy.png'
-import adurahProjects from '../assets/adurah-projects.png'
-import alwaysHoopy from '../assets/always-hoopy.png'
-import arkBoards from '../assets/ark-boards.png'
-import bsBraaigridz from '../assets/bs-braaigridz.png'
-import eePs from '../assets/ee-ps.png'
-import greenService from '../assets/green-service.png'
-import silverMarten from '../assets/silver-marten.png'
-import mulleinZingTea from '../assets/mullein-zing-tea.png'
-import mycroauroMushroom from '../assets/mycroauro-mushroom.jpg'
-import rrd from '../assets/rrd.png'
-import squeakyClean from '../assets/squeaky-clean.png'
-import nineSixtyThree from '../assets/963.png'
-import bsd from '../assets/bsd.png'
-import chikaraStables from '../assets/chikara-stables.png'
-import eternalLight from '../assets/eternal-light.png'
-import holistic963Vibration from '../assets/holistic-963-vibration.png'
-import relaxRenewReiki from '../assets/relax-renew-reiki.png'
-import socialMediaPlatform from '../assets/social-media-platform.png'
-import tinyareLifestyle from '../assets/tinyare-lifestyle.jpg'
+import sae from '../assets/sae.webp'
+import arcedge from '../assets/arcedge-construction.webp'
+import tesseraLumen from '../assets/tessera-lumen.webp'
+import lumenSocial from '../assets/lumen-social.webp'
+import glassKingMirror from '../assets/glass-king-mirror.webp'
+import candiedRevenge from '../assets/candied-revenge.webp'
+import cleanScene from '../assets/clean-scene.webp'
+import bettorAppsFurniture from '../assets/bettor-apps-furniture.webp'
+import damonsDairy from '../assets/damons-dairy.webp'
+import adurahProjects from '../assets/adurah-projects.webp'
+import alwaysHoopy from '../assets/always-hoopy.webp'
+import arkBoards from '../assets/ark-boards.webp'
+import bsBraaigridz from '../assets/bs-braaigridz.webp'
+import eePs from '../assets/ee-ps.webp'
+import greenService from '../assets/green-service.webp'
+import silverMarten from '../assets/silver-marten.webp'
+import mulleinZingTea from '../assets/mullein-zing-tea.webp'
+import mycroauroMushroom from '../assets/mycroauro-mushroom.webp'
+import rrd from '../assets/rrd.webp'
+import squeakyClean from '../assets/squeaky-clean.webp'
+import nineSixtyThree from '../assets/963.webp'
+import bsd from '../assets/bsd.webp'
+import chikaraStables from '../assets/chikara-stables.webp'
+import eternalLight from '../assets/eternal-light.webp'
+import holistic963Vibration from '../assets/holistic-963-vibration.webp'
+import relaxRenewReiki from '../assets/relax-renew-reiki.webp'
+import socialMediaPlatform from '../assets/social-media-platform.webp'
+import tinyareLifestyle from '../assets/tinyare-lifestyle.webp'
 
 export const siteUrl = 'https://www.hoaws.co.za'
 export const siteName = 'HOAWS'
@@ -33,12 +33,15 @@ export const siteName = 'HOAWS'
 export const whatsapp = 'https://wa.me/27740145161?text=Hi%20HOAWS%2C%20I%27d%20like%20to%20start%20a%20project.'
 export const contactEmail = 'info@hoaws.co.za'
 export const contactPhone = '+27 74 014 5161'
+export const contactPhoneTel = 'tel:+27740145161'
 
 export const socials = [
   { label: 'Instagram', url: 'https://www.instagram.com/hoaws.digital/' },
   { label: 'Facebook', url: 'https://www.facebook.com/hoaws.digital' },
   { label: 'TikTok', url: 'https://www.tiktok.com/@hoaws.digital' },
 ]
+
+export const googleBusiness = 'https://www.google.com/search?sca_esv=208f0a03c550a3c8&sxsrf=APpeQntesk0_XHYuwRlgfVy7n6Ce0ewzfw%3A1790358659388&q=Rum%20Raisin%20Digital&stick=H4sIAAAAAAAAAONgU1I1qDBJsbRIMzYzSUxNNrZITU6yMqgwSjUxNkwxN05ONUhOSTM2WcQqFFSaqxCUmFmcmafgkpmeWZKYAwCe2bt7PgAAAA&mat=Cb7oQjhhUzhn&ved=2ahUKEwiA2KbfpYqXAxVgRZ8JHX1NB78QrMcEegQIGRAC'
 
 export const navItems = [
   ['Home', '/'],
@@ -65,7 +68,7 @@ export const fallbackReview = {
 
 export const workItems = [
   { title: 'S.A.E.', image: sae, url: 'https://www.sae963.com', type: 'Brand platform' },
-  { title: 'ArcEdge', image: arcedge, url: 'https://arcedgeconstructions.co.za', type: 'Construction web' },
+  { title: 'ArcEdge', image: arcedge, url: 'https://arcedgeconstruction.co.za', type: 'Construction web' },
   { title: 'Tessera Lumen', image: tesseraLumen, url: 'https://app.963.co.za/', type: 'Oracle app' },
   { title: 'Lumen Social', image: lumenSocial, url: 'https://lumensocial.vercel.app/', type: 'Social product' },
   { title: 'Glass King & Mirror', image: glassKingMirror, url: '#', type: 'Brand design' },

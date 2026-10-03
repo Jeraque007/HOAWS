@@ -4,18 +4,17 @@ import SEO from '../components/SEO'
 import SectionIntro from '../components/SectionIntro'
 import ProjectCard from '../components/ProjectCard'
 import ContactBand from '../components/ContactBand'
+import PromoPopup from '../components/PromoPopup'
 import { services, whatsapp, workItems } from '../lib/site'
-/* Hero tag line: the Hoaws Name Logo strip — the ONLY asset allowed in the hero tag line slot. */
-import heroTagLineLogo from '../assets/hoaws-name-logo.png'
-/* Home floating logo: the Hoaws Translucent crest — the ONLY asset allowed in the floating logo slot. */
-import homeFloatingLogo from '../assets/hoaws-translucent.png'
-import digitalCardFront from '../assets/hoaws-vcf.png'
+/* Home floating logo: the Hoaws Translucent crest — image 2 */
+import homeFloatingLogo from '../assets/hoaws-translucent.webp'
+import digitalCardFront from '../assets/hoaws-vcf.webp'
 import './Home.css'
 
 function HomeBusinessCardButton() {
   return (
     <Link to="/digital-card" className="home-card-button" aria-label="Open the HOAWS digital business card">
-      <img src={digitalCardFront} alt="" aria-hidden="true" />
+      <img src={digitalCardFront} alt="" aria-hidden="true" loading="lazy" decoding="async" />
       <span className="home-card-button-overlay" aria-hidden="true" />
       <span className="home-card-button-content">
         <strong>Digital Card</strong>
@@ -40,15 +39,37 @@ export default function Home() {
         path="/"
       />
 
+      {/* ANNOUNCEMENT POPUP - uploaded MP4 + copy from /promos/admin; shows once
+          per session and dismisses on enter, Esc, tap-outside, scroll or timeout. */}
+      <PromoPopup />
+
+      {/* ANNOUNCEMENT BANNER - pinned directly below the header bar (top of page); white background; pauses on the "Open Tessera Lumen" link */}
       <div className="home-banner" role="status">
         <div className="home-banner-track">
-          <span>Digital strategy, web experiences, and business systems</span>
-          <span aria-hidden="true">?</span>
-          <Link to="/services">Explore what we do</Link>
-          <span aria-hidden="true">?</span>
-          <span>Digital strategy, web experiences, and business systems</span>
-          <span aria-hidden="true">?</span>
-          <Link to="/services">Explore what we do</Link>
+          <span>Free readings for the first 100 customers</span>
+          <span aria-hidden="true">◆</span>
+          <a href="https://app.963.co.za" target="_blank" rel="noopener noreferrer">
+            Open Tessera Lumen
+          </a>
+          <span aria-hidden="true">◆</span>
+          <span>Free readings for the first 100 customers</span>
+          <span aria-hidden="true">◆</span>
+          <a href="https://app.963.co.za" target="_blank" rel="noopener noreferrer">
+            Open Tessera Lumen
+          </a>
+          <span aria-hidden="true">◆</span>
+          <span>Free readings for the first 100 customers</span>
+          <span aria-hidden="true">◆</span>
+          <a href="https://app.963.co.za" target="_blank" rel="noopener noreferrer">
+            Open Tessera Lumen
+          </a>
+          <span aria-hidden="true">◆</span>
+          <span>Free readings for the first 100 customers</span>
+          <span aria-hidden="true">◆</span>
+          <a href="https://app.963.co.za" target="_blank" rel="noopener noreferrer">
+            Open Tessera Lumen
+          </a>
+          <span aria-hidden="true">◆</span>
         </div>
       </div>
 
@@ -76,14 +97,15 @@ export default function Home() {
           <div className="hero-visual reveal delay-2">
             <div className="hero-orbit orbit-one" />
             <div className="hero-orbit orbit-two" />
-            {/* Hero tag line slot — only the Hoaws Name Logo strip belongs here. */}
-            <div className="hero-tag-line">
-              <img src={heroTagLineLogo} className="hero-tag-line-logo" alt="Hoaws Name Logo" />
-            </div>
-            {/* Home floating logo slot — only the Hoaws Translucent crest belongs here. */}
-            <div className="floating-logo" aria-hidden="true">
-              <img src={homeFloatingLogo} alt="" />
-            </div>
+            
+            <img
+              src={homeFloatingLogo}
+              className="hero-floating-logo"
+              alt="HOAWS Crest"
+              fetchPriority="high"
+              decoding="async"
+            />
+
             <span className="visual-caption">
               01 / The digital partner<br />
               behind your next chapter
@@ -99,7 +121,6 @@ export default function Home() {
       <section className="section home-card-section">
         <div className="container home-card-section-inner">
           <div className="home-card-section-copy">
-            <p className="eyebrow">Keep in touch</p>
             <h2>Take our details<br /><span>with you.</span></h2>
             <p>Save the HOAWS contact card for quick access whenever you need us.</p>
           </div>
@@ -109,7 +130,6 @@ export default function Home() {
 
       <section className="statement section">
         <div className="container statement-inner">
-          <p className="eyebrow">The HOAWS approach</p>
           <h2>
             Good work starts with<br />
             <span>a clear point of view.</span>
@@ -123,7 +143,6 @@ export default function Home() {
       <section className="section services-section">
         <div className="container">
           <SectionIntro
-            kicker="What we do"
             title={<>Built around your<br /><span>real-world goals.</span></>}
             copy="From the first idea to the final detail, we help ambitious businesses create a digital presence that earns attention and does something with it."
             action={<Link className="text-link" to="/services">Explore services <ChevronRight size={16} /></Link>}
@@ -150,7 +169,6 @@ export default function Home() {
       <section className="section work-section">
         <div className="container">
           <SectionIntro
-            kicker="Selected work"
             title={<>Small teams.<br /><span>Big signal.</span></>}
             copy="A few of the digital places we&apos;ve helped bring to life."
             action={<Link className="text-link" to="/work">View all work <ChevronRight size={16} /></Link>}
@@ -166,7 +184,7 @@ export default function Home() {
 
       <ContactBand
         band={false}
-        kicker="Have a good idea?"
+        kicker={null}
         title={<>Let&apos;s give it<br /><em>somewhere</em> to go.</>}
         ctaLabel="Start a conversation"
         ctaIcon={<ArrowUpRight size={17} />}

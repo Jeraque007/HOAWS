@@ -10,7 +10,7 @@
 
 do $$
 declare
-  admin_email text := 'info@hoaws.co.za';
+  admin_email text := 'digital@hoaws.co.za';
   admin_id uuid;
 begin
   select id into admin_id from auth.users where lower(email) = lower(admin_email);

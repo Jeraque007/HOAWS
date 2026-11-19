@@ -1,5 +1,26 @@
 {
-  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }],
+  "redirects": [
+    { "source": "/promos/admin/", "destination": "/promos/admin", "permanent": true },
+    { "source": "/reviews/admin/", "destination": "/reviews/admin", "permanent": true },
+    { "source": "/digital-card/", "destination": "/digital-card", "permanent": true },
+    { "source": "/tessera-lumen/", "destination": "/tessera-lumen", "permanent": true },
+    { "source": "/services/", "destination": "/services", "permanent": true },
+    { "source": "/reviews/", "destination": "/reviews", "permanent": true },
+    { "source": "/work/", "destination": "/work", "permanent": true },
+    { "source": "/about/", "destination": "/about", "permanent": true },
+    { "source": "/index.html", "destination": "/", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/promos/admin", "destination": "/promos/admin/index.html" },
+    { "source": "/reviews/admin", "destination": "/reviews/admin/index.html" },
+    { "source": "/digital-card", "destination": "/digital-card/index.html" },
+    { "source": "/tessera-lumen", "destination": "/tessera-lumen/index.html" },
+    { "source": "/services", "destination": "/services/index.html" },
+    { "source": "/reviews", "destination": "/reviews/index.html" },
+    { "source": "/work", "destination": "/work/index.html" },
+    { "source": "/about", "destination": "/about/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
   "headers": [
     {
       "source": "/hoaws.vcf",

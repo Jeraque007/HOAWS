@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Instagram, MessageCircle, Phone } from 'lucide-react'
-import SEO from '../components/SEO'
 import PageHero from '../components/PageHero'
 import { contactEmail, contactPhoneTel, googleBusiness, socials, whatsapp } from '../lib/site'
 import homeLogo from '../assets/hoaws-translucent.webp'
@@ -27,11 +26,6 @@ export default function Card() {
 
   return (
     <main className="digital-card-page">
-      <SEO
-        title="Digital Card | HOAWS"
-        description="Save, call, and connect with HOAWS from one digital business card."
-        path="/digital-card"
-      />
 
       <PageHero kicker="Digital Card" title={<>Tap to flip<br /><em>your card.</em></>} copy="Download, save, call, and connect with HOAWS from a single digital touchpoint." />
 

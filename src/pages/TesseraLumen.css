@@ -163,10 +163,10 @@
 .tessera-showcase { background: #e8ebe6; }
 .tessera-section-heading { display: grid; grid-template-columns: 1.1fr .8fr; gap: 80px; align-items: end; margin-bottom: 58px; }
 .tessera-section-heading > p { max-width: 360px; margin: 0 0 4px; color: #617278; font-size: 15px; }
-.tessera-app-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: 20px; align-items: stretch; }
+.tessera-app-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
 
-.tessera-art-card { display: grid; grid-template-columns: minmax(220px, .9fr) 1fr; overflow: hidden; border: 1px solid rgba(7,19,27,.1); background: var(--white); }
-.tessera-art-image { display: grid; place-items: center; min-height: 430px; padding: 26px; background: var(--deep); }
+.tessera-art-card { display: grid; grid-template-columns: 1fr; overflow: hidden; border: 1px solid rgba(7,19,27,.1); background: var(--white); }
+.tessera-art-image { display: grid; place-items: center; min-height: 300px; padding: 26px; background: var(--deep); }
 .tessera-art-image img { width: 100%; max-width: 300px; aspect-ratio: 1; object-fit: cover; box-shadow: 0 22px 35px rgba(0,0,0,.28); }
 .tessera-art-copy { display: flex; flex-direction: column; justify-content: center; padding: 42px; }
 .tessera-art-copy .eyebrow,
@@ -184,6 +184,34 @@
 .tessera-download-card > p { position: relative; z-index: 1; max-width: 360px; margin: 0 0 28px; color: rgba(7,19,27,.72); font-size: 15px; line-height: 1.65; }
 .tessera-download-card .button { position: relative; z-index: 1; background: var(--ink); color: var(--gold-soft); box-shadow: none; }
 .tessera-download-card .button:hover { box-shadow: 0 10px 24px rgba(7,19,27,.2); }
+
+/* Third block: physical deck. The whole card is the (hidden) link to The Game Crafter. */
+.tessera-purchase-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--white);
+  background: var(--deep);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.tessera-purchase-card:hover { transform: translateY(-5px); box-shadow: 0 24px 46px rgba(7,19,27,.3); }
+.tessera-purchase-card:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.tessera-purchase-media { overflow: hidden; line-height: 0; background: #000; }
+.tessera-purchase-media img { width: 100%; height: auto; transition: transform .45s ease; }
+.tessera-purchase-card:hover .tessera-purchase-media img { transform: scale(1.05); }
+.tessera-purchase-copy { position: relative; z-index: 1; display: flex; flex-direction: column; flex: 1; padding: 32px 34px 36px; }
+.tessera-purchase-copy .tessera-card-label { margin-bottom: 15px; color: var(--gold); }
+.tessera-purchase-copy .tessera-card-label svg { flex: 0 0 auto; margin-left: auto; }
+.tessera-purchase-copy h3 { margin: 0 0 9px; font-size: clamp(1.7rem, 2.1vw, 2.2rem); line-height: 1.06; letter-spacing: -.05em; }
+.tessera-purchase-note { margin: 0 0 24px; color: var(--gold-soft); font-size: 13px; font-weight: 700; }
+.tessera-purchase-lede { margin: 0; color: rgba(255,255,255,.7); font-size: 14px; line-height: 1.65; }
+.tessera-purchase-lede + .tessera-purchase-lede { margin-top: 6px; color: rgba(255,255,255,.5); }
+
+/* Three equal columns: keep the reading-room art panel from stretching the row. */
+@media (min-width: 801px) {
+  .tessera-art-image img { max-width: 250px; }
+}
 
 .tessera-features-section { background: var(--cream); }
 .tessera-features-heading { max-width: 720px; margin-bottom: 58px; }
@@ -238,6 +266,7 @@
   .tessera-art-image { min-height: 310px; }
   .tessera-art-copy { padding: 30px 25px 34px; }
   .tessera-download-card { padding: 34px 25px; }
+  .tessera-purchase-copy { padding: 28px 25px 32px; }
   .tessera-feature-grid { grid-template-columns: 1fr; }
   .tessera-feature,
   .tessera-feature:not(:first-child),

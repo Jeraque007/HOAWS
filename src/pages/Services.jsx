@@ -1,5 +1,4 @@
 import { Check } from 'lucide-react'
-import SEO from '../components/SEO'
 import PageHero from '../components/PageHero'
 import ContactBand from '../components/ContactBand'
 import { services } from '../lib/site'
@@ -8,11 +7,6 @@ import './Services.css'
 export default function Services() {
   return (
     <main>
-      <SEO
-        title="Services | HOAWS"
-        description="Digital strategy, web experiences, social content, and business systems from HOAWS."
-        path="/services"
-      />
 
       <PageHero kicker="Services" title={<>Make the complex<br /><em>feel possible.</em></>} copy="The right digital partner can turn scattered ideas into a clear, compelling experience. That&apos;s the work we like doing." />
       <section className="section services-page">

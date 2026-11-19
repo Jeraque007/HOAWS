@@ -4,7 +4,6 @@ import {
   ArrowLeft, ClipboardPaste, LogOut, Pencil, Plus, RefreshCw,
   RotateCcw, Save, ShieldCheck, Trash2, Upload,
 } from 'lucide-react'
-import SEO from '../components/SEO'
 import { PromoPreview } from '../components/PromoPopup'
 // The shared page-hero styling ships with the PageHero component. Importing it
 // here keeps this lazily-loaded route looking right even on a direct first hit.
@@ -422,13 +421,12 @@ export default function PromoAdmin() {
   }
 
   if (authLoading) {
-    return <main className="promo-admin-page"><SEO /><div className="promo-admin-state">Checking admin session…</div></main>
+    return <main className="promo-admin-page"><div className="promo-admin-state">Checking admin session…</div></main>
   }
 
   if (!session) {
     return (
       <main className="promo-admin-page">
-        <SEO />
         <section className="page-hero promo-admin-hero">
           <div className="container page-hero-inner">
             <p className="eyebrow">Private workspace</p>
@@ -455,7 +453,6 @@ export default function PromoAdmin() {
 
   return (
     <main className="promo-admin-page">
-      <SEO />
       <section className="page-hero promo-admin-hero">
         <div className="container page-hero-inner">
           <p className="eyebrow">Private workspace</p>

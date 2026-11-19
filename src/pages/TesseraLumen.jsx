@@ -1,13 +1,14 @@
 import { ArrowUpRight, Download, ExternalLink, MessageCircle, Smartphone, Sparkles } from 'lucide-react'
-import SEO from '../components/SEO'
 import tesseraLumenOg from '../assets/tessera-lumen-og.webp'
 import tesseraLumenLogo from '../assets/tessera-lumen-logo.webp'
 import tesseraLumenArt from '../assets/tessera-lumen.webp'
 import tesseraAppIcon from '../assets/icon-512.webp'
+import fanCards from '../assets/fan-10-cards.webp'
 import './TesseraLumen.css'
 
-const appUrl = 'https://app.963.co.za'
+const appUrl = 'https://sophia.sae963.com'
 const downloadUrl = 'https://apkpure.com/p/com.godcode963.app'
+const oracleUrl = 'https://www.thegamecrafter.com/games/oracle-of-sophia'
 const bookSessionWhatsApp = 'https://wa.me/27848331128?text=Hi%20SAE%2C%20I%27d%20like%20to%20book%20a%20session.'
 
 const features = [
@@ -20,11 +21,6 @@ const features = [
 export default function TesseraLumen() {
   return (
     <main className="tessera-page">
-      <SEO
-        title="Tessera Lumen | HOAWS"
-        description="Tessera Lumen — Oracle of Sophia. Receive intuitive tarot readings online and claim a free reading among the first 100 customers."
-        path="/tessera-lumen"
-      />
 
       <section className="tessera-hero">
         <div className="container tessera-hero-grid">
@@ -89,6 +85,18 @@ export default function TesseraLumen() {
               <p>Get Tessera Lumen — Oracle of Sophia on your Android device. Access your tarot readings, receive guidance, and explore your path anytime, anywhere.</p>
               <a className="button button-dark" href={downloadUrl} target="_blank" rel="noopener noreferrer">Download the App <Download size={16} /></a>
             </article>
+            <a className="tessera-purchase-card" href={oracleUrl} target="_blank" rel="noopener noreferrer">
+              <div className="tessera-purchase-media">
+                <img src={fanCards} alt="Ten Oracle of Sophia cards fanned out on a dark surface" loading="lazy" decoding="async" />
+              </div>
+              <div className="tessera-purchase-copy">
+                <div className="tessera-card-label">49 Cards, 7 Pillars, 1 Soul Journey <ExternalLink size={13} /></div>
+                <h3>Purchase your own Oracle of Sophia.</h3>
+                <p className="tessera-purchase-note">(109 page booklet included)</p>
+                <p className="tessera-purchase-lede">A sacred deck for those who remember</p>
+                <p className="tessera-purchase-lede">Where ancient wisdom meets the light within</p>
+              </div>
+            </a>
           </div>
         </div>
       </section>

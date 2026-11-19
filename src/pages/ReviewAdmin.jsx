@@ -2,7 +2,6 @@ import { useCallback, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Bell, Check, LogOut, RefreshCw, ShieldCheck, X } from 'lucide-react'
 import ReviewStars from '../components/ReviewStars'
-import SEO from '../components/SEO'
 import {
   getAdminSession,
   getReviewModerationData,
@@ -154,13 +153,12 @@ export default function ReviewAdmin() {
   }
 
   if (authLoading) {
-    return <main className="review-admin-page"><SEO /><div className="review-admin-state">Checking admin session…</div></main>
+    return <main className="review-admin-page"><div className="review-admin-state">Checking admin session…</div></main>
   }
 
   if (!session) {
     return (
       <main className="review-admin-page">
-        <SEO />
         <section className="page-hero review-admin-hero">
           <div className="container page-hero-inner">
             <p className="eyebrow">Private workspace</p>
@@ -190,7 +188,6 @@ export default function ReviewAdmin() {
 
   return (
     <main className="review-admin-page">
-      <SEO />
       <section className="page-hero review-admin-hero">
         <div className="container page-hero-inner">
           <p className="eyebrow">Private workspace</p>

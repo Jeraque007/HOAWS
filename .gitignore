@@ -8,3 +8,6 @@ dist/
 
 # Local dev-server output
 *.log
+
+# Build-time server bundle used by scripts/prerender.mjs
+dist-ssr/

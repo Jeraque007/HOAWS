@@ -361,7 +361,7 @@ the realtime auth socket.
 
 ### 5.5 Change the admin email
 
-`setup-admin.sql` hardcodes the address `info@hoaws.co.za` — change it to your own
+`setup-admin.sql` hardcodes the address `digital@hoaws.co.za` — change it to your own
 admin login before you run it. Everything else (table name, bucket name, route,
 sessionStorage prefix) is renameable, and Part 7 lists every place each name
 appears so nothing gets missed. Out of the box it all works as-is.

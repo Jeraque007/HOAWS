@@ -1,5 +1,4 @@
 import { MessageCircle } from 'lucide-react'
-import SEO from '../components/SEO'
 import PageHero from '../components/PageHero'
 import SectionIntro from '../components/SectionIntro'
 import { whatsapp } from '../lib/site'
@@ -9,11 +8,6 @@ import './About.css'
 export default function About() {
   return (
     <main>
-      <SEO
-        title="About | HOAWS"
-        description="Meet HOAWS and discover the thinking behind its digital and business transformation work."
-        path="/about"
-      />
 
       <PageHero kicker="About HOAWS" title={<>A human touch<br /><em>to digital work.</em></>} copy="Founded by Sylvana Ellis, HOAWS brings strategy, creativity and practical know-how to businesses ready for their next chapter." />
       <section className="section about-section">

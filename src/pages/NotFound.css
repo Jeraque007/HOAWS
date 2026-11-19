@@ -1,0 +1,14 @@
+/* Catch-all route: shown for any URL that is not a real page. */
+
+.not-found-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.not-found-note {
+  max-width: 560px;
+  margin: 0;
+}

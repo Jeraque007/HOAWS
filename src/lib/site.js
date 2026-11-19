@@ -31,7 +31,7 @@ export const siteUrl = 'https://www.hoaws.co.za'
 export const siteName = 'HOAWS'
 
 export const whatsapp = 'https://wa.me/27740145161?text=Hi%20HOAWS%2C%20I%27d%20like%20to%20start%20a%20project.'
-export const contactEmail = 'info@hoaws.co.za'
+export const contactEmail = 'digital@hoaws.co.za'
 export const contactPhone = '+27 74 014 5161'
 export const contactPhoneTel = 'tel:+27740145161'
 
@@ -69,7 +69,7 @@ export const fallbackReview = {
 export const workItems = [
   { title: 'S.A.E.', image: sae, url: 'https://www.sae963.com', type: 'Brand platform' },
   { title: 'ArcEdge', image: arcedge, url: 'https://arcedgeconstruction.co.za', type: 'Construction web' },
-  { title: 'Tessera Lumen', image: tesseraLumen, url: 'https://app.963.co.za/', type: 'Oracle app' },
+  { title: 'Tessera Lumen', image: tesseraLumen, url: 'https://sophia.sae963.com/', type: 'Oracle app' },
   { title: 'Lumen Social', image: lumenSocial, url: 'https://lumensocial.vercel.app/', type: 'Social product' },
   { title: 'Glass King & Mirror', image: glassKingMirror, url: '#', type: 'Brand design' },
   { title: 'Candied Revenge', image: candiedRevenge, url: '#', type: 'Creative work' },

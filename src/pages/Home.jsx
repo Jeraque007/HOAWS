@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
 import { ArrowUpRight, ChevronRight, ExternalLink, MessageCircle, Phone } from 'lucide-react'
-import SEO from '../components/SEO'
 import SectionIntro from '../components/SectionIntro'
 import ProjectCard from '../components/ProjectCard'
 import ContactBand from '../components/ContactBand'
@@ -11,6 +10,8 @@ import homeFloatingLogo from '../assets/hoaws-translucent.webp'
 import digitalCardFront from '../assets/hoaws-vcf.webp'
 import './Home.css'
 
+const oracleUrl = 'https://www.thegamecrafter.com/games/oracle-of-sophia'
+
 function HomeBusinessCardButton() {
   return (
     <Link to="/digital-card" className="home-card-button" aria-label="Open the HOAWS digital business card">
@@ -19,7 +20,7 @@ function HomeBusinessCardButton() {
       <span className="home-card-button-content">
         <strong>Digital Card</strong>
         <span className="home-card-button-details">
-          <span><MessageCircle size={13} /> info@hoaws.co.za</span>
+          <span><MessageCircle size={13} /> digital@hoaws.co.za</span>
           <span><Phone size={13} /> +27740145161</span>
           <span><ExternalLink size={13} /> www.hoaws.co.za</span>
         </span>
@@ -33,40 +34,43 @@ function HomeBusinessCardButton() {
 export default function Home() {
   return (
     <main>
-      <SEO
-        title="HOAWS | Human & Online Administrative / Web Solutions"
-        description="HOAWS creates digital systems, brands and online experiences that move ambitious businesses forward."
-        path="/"
-      />
 
       {/* ANNOUNCEMENT POPUP - uploaded MP4 + copy from /promos/admin; shows once
           per session and dismisses on enter, Esc, tap-outside, scroll or timeout. */}
       <PromoPopup />
 
-      {/* ANNOUNCEMENT BANNER - pinned directly below the header bar (top of page); white background; pauses on the "Open Tessera Lumen" link */}
+      {/* ANNOUNCEMENT BANNER - pinned directly below the header bar (top of page); white background; pauses on hover over the banner or either link (deck purchase / Open Tessera Lumen) */}
       <div className="home-banner" role="status">
         <div className="home-banner-track">
-          <span>Free readings for the first 100 customers</span>
+          <a href={oracleUrl} target="_blank" rel="noopener noreferrer">
+            Purchase your own deck of cards — <strong>For only $29.99</strong>
+          </a>
           <span aria-hidden="true">◆</span>
-          <a href="https://app.963.co.za" target="_blank" rel="noopener noreferrer">
+          <a href="https://sophia.sae963.com" target="_blank" rel="noopener noreferrer">
             Open Tessera Lumen
           </a>
           <span aria-hidden="true">◆</span>
-          <span>Free readings for the first 100 customers</span>
+          <a href={oracleUrl} target="_blank" rel="noopener noreferrer">
+            Purchase your own deck of cards — <strong>For only $29.99</strong>
+          </a>
           <span aria-hidden="true">◆</span>
-          <a href="https://app.963.co.za" target="_blank" rel="noopener noreferrer">
+          <a href="https://sophia.sae963.com" target="_blank" rel="noopener noreferrer">
             Open Tessera Lumen
           </a>
           <span aria-hidden="true">◆</span>
-          <span>Free readings for the first 100 customers</span>
+          <a href={oracleUrl} target="_blank" rel="noopener noreferrer">
+            Purchase your own deck of cards — <strong>For only $29.99</strong>
+          </a>
           <span aria-hidden="true">◆</span>
-          <a href="https://app.963.co.za" target="_blank" rel="noopener noreferrer">
+          <a href="https://sophia.sae963.com" target="_blank" rel="noopener noreferrer">
             Open Tessera Lumen
           </a>
           <span aria-hidden="true">◆</span>
-          <span>Free readings for the first 100 customers</span>
+          <a href={oracleUrl} target="_blank" rel="noopener noreferrer">
+            Purchase your own deck of cards — <strong>For only $29.99</strong>
+          </a>
           <span aria-hidden="true">◆</span>
-          <a href="https://app.963.co.za" target="_blank" rel="noopener noreferrer">
+          <a href="https://sophia.sae963.com" target="_blank" rel="noopener noreferrer">
             Open Tessera Lumen
           </a>
           <span aria-hidden="true">◆</span>

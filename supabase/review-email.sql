@@ -1,18 +1,18 @@
 -- Run this in the Supabase SQL Editor AFTER supabase/reviews.sql.
--- Emails info@hoaws.co.za whenever a new review/comment is inserted into public.reviews.
+-- Emails digital@hoaws.co.za whenever a new review/comment is inserted into public.reviews.
 --
 -- How it works:
 --   trigger reviews_email_admin (after insert on public.reviews)
 --     -> public.email_admin_on_new_review()
 --        -> net.http_post() (pg_net, asynchronous - queued, sent on commit)
---           -> https://formsubmit.co/ajax/info@hoaws.co.za  (forwards the email, no API key)
+--           -> https://formsubmit.co/ajax/digital@hoaws.co.za  (forwards the email, no API key)
 --
 -- Requirements:
 --   1. Enable pg_net: Dashboard -> Database -> Extensions -> search "pg_net" -> Enable.
 --      (Or run the "create extension" line below - if it errors with a permission
 --       message, enable it from the Dashboard first, then re-run this script.)
 --   2. FormSubmit.co needs no signup or API key. The FIRST submission triggers a
---      one-time confirmation email to info@hoaws.co.za - click the link in it once;
+--      one-time confirmation email to digital@hoaws.co.za - click the link in it once;
 --      after that every new review is delivered automatically.
 
 create extension if not exists pg_net;
@@ -25,7 +25,7 @@ set search_path = public
 as $$
 begin
   perform net.http_post(
-    url := 'https://formsubmit.co/ajax/info@hoaws.co.za',
+    url := 'https://formsubmit.co/ajax/digital@hoaws.co.za',
     body := jsonb_build_object(
       '_subject', 'New review received (' || new.rating || '/5) - hoaws.co.za',
       '_template', 'table',

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import SEO from '../components/SEO'
 import PageHero from '../components/PageHero'
 import ReviewList from '../components/ReviewList'
 import ReviewForm from '../components/ReviewForm'
@@ -61,11 +60,6 @@ export default function Reviews() {
 
   return (
     <main>
-      <SEO
-        title="Reviews | HOAWS"
-        description="Read client feedback and share your experience working with HOAWS."
-        path="/reviews"
-      />
 
       <PageHero kicker="Reviews" title={<>Kind words from<br /><em>good people.</em></>} copy="Every project is a collaboration. Here's what a few of ours have had to say." />
       <section className="section reviews-page">

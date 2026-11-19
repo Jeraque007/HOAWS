@@ -35,14 +35,16 @@
 .home-banner-track > span[aria-hidden="true"] { color: var(--gold); }
 .home-banner-track a { color: var(--cyan-deep); }  /* Dark cyan reads on the white bar */
 .home-banner-track a:hover { text-decoration: underline; }
+/* Price is the hook of the promo - keep it on the dark banner ink for contrast */
+.home-banner-track a strong { color: var(--ink); font-weight: 700; }
 
-/* Pause on hover - works when hovering anywhere on the banner, including the link */
+/* Pause on hover - works when hovering anywhere on the banner, including the links */
 .home-banner:hover .home-banner-track,
 .home-banner:focus-within .home-banner-track { 
   animation-play-state: paused; 
 }
 
-/* Pause specifically when hovering or focusing the "Open Tessera Lumen" link */
+/* Pause specifically when hovering or focusing one of the banner links */
 .home-banner-track:has(a:hover),
 .home-banner-track:has(a:focus-visible) {
   animation-play-state: paused;

@@ -17,6 +17,7 @@ const Reviews = lazy(() => import('./pages/Reviews'))
 const ReviewAdmin = lazy(() => import('./pages/ReviewAdmin'))
 const PromoAdmin = lazy(() => import('./pages/PromoAdmin'))
 const Card = lazy(() => import('./pages/Card'))
+const NotFound = lazy(() => import('./pages/NotFound'))
 
 function RouteFallback() {
   return (
@@ -30,8 +31,8 @@ function App() {
   return (
     <>
       <ScrollToTop />
-      {/* Baseline metadata for every route; individual pages render their own
-          <SEO /> with route-specific title, description and canonical URL. */}
+      {/* Single head writer for every route: title, description, robots and
+          canonical all come from src/lib/seo-routes.js. */}
       <SEO />
       <Navbar />
       <Suspense fallback={<RouteFallback />}>
@@ -45,7 +46,7 @@ function App() {
           <Route path="/reviews/admin" element={<ReviewAdmin />} />
           <Route path="/promos/admin" element={<PromoAdmin />} />
           <Route path="/digital-card" element={<Card />} />
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
       <Footer />

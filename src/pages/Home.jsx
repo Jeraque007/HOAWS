@@ -1,107 +1,90 @@
 import { Link } from 'react-router-dom'
-import { ArrowUpRight, ChevronRight, ExternalLink, MessageCircle, Phone } from 'lucide-react'
-import SectionIntro from '../components/SectionIntro'
-import ProjectCard from '../components/ProjectCard'
-import ContactBand from '../components/ContactBand'
-import PromoPopup from '../components/PromoPopup'
-import { services, whatsapp, workItems } from '../lib/site'
-/* Home floating logo: the Hoaws Translucent crest — image 2 */
+import { ArrowUpRight } from 'lucide-react'
+import { whatsapp } from '../lib/site'
 import homeFloatingLogo from '../assets/hoaws-translucent.webp'
-import digitalCardFront from '../assets/hoaws-vcf.webp'
 import './Home.css'
 
-const oracleUrl = 'https://www.thegamecrafter.com/games/oracle-of-sophia'
+const serviceCategories = [
+  {
+    number: '01',
+    title: 'Digital Presence',
+    description: 'Websites, online shops, email, hosting and digital business setup.',
+  },
+  {
+    number: '02',
+    title: 'Creative & Marketing',
+    description: 'Branding, graphic design, advertising, promotional content and social media.',
+  },
+  {
+    number: '03',
+    title: 'Business Administration',
+    description: 'Virtual assistance, documentation, business support and administrative solutions.',
+  },
+  {
+    number: '04',
+    title: 'Growth & Development',
+    description: 'Coaching, training, digital skills and practical business guidance.',
+  },
+  {
+    number: '05',
+    title: 'Tools & Resources',
+    description: 'Business templates, SOPs, guides and downloadable resources.',
+  },
+]
 
-function HomeBusinessCardButton() {
-  return (
-    <Link to="/digital-card" className="home-card-button" aria-label="Open the HOAWS digital business card">
-      <img src={digitalCardFront} alt="" aria-hidden="true" loading="lazy" decoding="async" />
-      <span className="home-card-button-overlay" aria-hidden="true" />
-      <span className="home-card-button-content">
-        <strong>Digital Card</strong>
-        <span className="home-card-button-details">
-          <span><MessageCircle size={13} /> digital@hoaws.co.za</span>
-          <span><Phone size={13} /> +27740145161</span>
-          <span><ExternalLink size={13} /> www.hoaws.co.za</span>
-        </span>
-        <small>Open to view, save &amp; connect</small>
-      </span>
-      <span className="home-card-button-arrow" aria-hidden="true"><ArrowUpRight size={18} /></span>
-    </Link>
-  )
-}
+const waysToWork = [
+  {
+    number: '01',
+    title: 'DIY',
+    subtitle: 'Do It Yourself',
+    description: 'Access resources, tools, templates and guidance to manage things yourself.',
+  },
+  {
+    number: '02',
+    title: 'Assisted',
+    subtitle: 'Work With Us',
+    description: 'Get professional assistance while remaining involved in your business decisions.',
+  },
+  {
+    number: '03',
+    title: 'Managed',
+    subtitle: 'Leave It With Us',
+    description: 'Choose the services you want HOAWS to manage on your behalf.',
+  },
+]
+
+const quoteUrl = new URL(whatsapp)
+quoteUrl.searchParams.set('text', "Hi HOAWS, I'd like to request a quote.")
 
 export default function Home() {
   return (
-    <main>
-
-      {/* ANNOUNCEMENT POPUP - uploaded MP4 + copy from /promos/admin; shows once
-          per session and dismisses on enter, Esc, tap-outside, scroll or timeout. */}
-      <PromoPopup />
-
-      {/* ANNOUNCEMENT BANNER - pinned directly below the header bar (top of page); white background; pauses on hover over the banner or either link (deck purchase / Open Tessera Lumen) */}
-      <div className="home-banner" role="status">
-        <div className="home-banner-track">
-          <a href={oracleUrl} target="_blank" rel="noopener noreferrer">
-            Purchase your own deck of cards — <strong>For only $29.99</strong>
-          </a>
-          <span aria-hidden="true">◆</span>
-          <a href="https://sophia.sae963.com" target="_blank" rel="noopener noreferrer">
-            Open Tessera Lumen
-          </a>
-          <span aria-hidden="true">◆</span>
-          <a href={oracleUrl} target="_blank" rel="noopener noreferrer">
-            Purchase your own deck of cards — <strong>For only $29.99</strong>
-          </a>
-          <span aria-hidden="true">◆</span>
-          <a href="https://sophia.sae963.com" target="_blank" rel="noopener noreferrer">
-            Open Tessera Lumen
-          </a>
-          <span aria-hidden="true">◆</span>
-          <a href={oracleUrl} target="_blank" rel="noopener noreferrer">
-            Purchase your own deck of cards — <strong>For only $29.99</strong>
-          </a>
-          <span aria-hidden="true">◆</span>
-          <a href="https://sophia.sae963.com" target="_blank" rel="noopener noreferrer">
-            Open Tessera Lumen
-          </a>
-          <span aria-hidden="true">◆</span>
-          <a href={oracleUrl} target="_blank" rel="noopener noreferrer">
-            Purchase your own deck of cards — <strong>For only $29.99</strong>
-          </a>
-          <span aria-hidden="true">◆</span>
-          <a href="https://sophia.sae963.com" target="_blank" rel="noopener noreferrer">
-            Open Tessera Lumen
-          </a>
-          <span aria-hidden="true">◆</span>
-        </div>
-      </div>
-
-      <section className="hero">
+    <main className="home-page">
+      <section className="hero home-hero">
         <div className="hero-grid container">
           <div className="hero-copy reveal">
-            <p className="eyebrow">Digital, with intention.</p>
+            <p className="home-kicker">Practical business support</p>
             <h1>
-              Make your next<br />
-              <em>move</em> matter.
+              Your Business.<br />
+              Your Needs.<br />
+              <em>Your Way.</em>
             </h1>
             <p className="hero-text">
-              HOAWS is a digital and business transformation practice for people building something worth remembering.
+              From establishing your digital presence to managing everyday business requirements,
+              HOAWS brings practical solutions and professional support together in one place.
             </p>
-            <div className="hero-actions reveal delay-3">
-              <a className="button button-primary" href={whatsapp} target="_blank" rel="noreferrer">
-                Let&apos;s talk <ArrowUpRight size={17} />
+            <div className="hero-actions">
+              <a className="button button-primary" href="#what-we-do">
+                Explore What We Do <ArrowUpRight size={17} />
               </a>
-              <Link className="text-link" to="/work">
-                See our work <ChevronRight size={16} />
+              <Link className="home-button-secondary" to="/services">
+                Build Your Business <ArrowUpRight size={17} />
               </Link>
             </div>
           </div>
 
           <div className="hero-visual reveal delay-2">
-            <div className="hero-orbit orbit-one" />
-            <div className="hero-orbit orbit-two" />
-            
+            <div className="hero-orbit orbit-one" aria-hidden="true" />
+            <div className="hero-orbit orbit-two" aria-hidden="true" />
             <img
               src={homeFloatingLogo}
               className="hero-floating-logo"
@@ -109,92 +92,131 @@ export default function Home() {
               fetchPriority="high"
               decoding="async"
             />
-
             <span className="visual-caption">
-              01 / The digital partner<br />
-              behind your next chapter
+              Digital solutions<br />
+              Creative services<br />
+              Business support
             </span>
           </div>
         </div>
         <div className="hero-footer container">
           <span>Based in South Africa &middot; working everywhere</span>
-          <span className="scroll-cue">Scroll to explore <span /></span>
+          <span>Flexible support for every stage</span>
         </div>
       </section>
 
-      <section className="section home-card-section">
-        <div className="container home-card-section-inner">
-          <div className="home-card-section-copy">
-            <h2>Take our details<br /><span>with you.</span></h2>
-            <p>Save the HOAWS contact card for quick access whenever you need us.</p>
+      <section className="section home-why">
+        <div className="container home-split">
+          <div>
+            <p className="home-kicker">Why HOAWS is evolving</p>
+            <h2>Business support should fit <em>your business.</em></h2>
           </div>
-          <HomeBusinessCardButton />
+          <div className="home-copy-block">
+            <p>
+              Business requirements change. Not every business needs a full-service agency, a large
+              monthly contract or expensive digital infrastructure.
+            </p>
+            <p>
+              Sometimes you need a website. Sometimes you need an advert, a business logo,
+              administrative assistance or someone to guide you through a process.
+            </p>
+            <p>
+              HOAWS is evolving to make these services more accessible, flexible and connected.
+            </p>
+            <p className="home-copy-emphasis">
+              You choose what you need. You decide how involved you want to be. HOAWS provides the
+              support.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="statement section">
-        <div className="container statement-inner">
-          <h2>
-            Good work starts with<br />
-            <span>a clear point of view.</span>
-          </h2>
-          <p className="statement-copy">
-            Strategy without the fog. Design with a job to do. Technology that feels human. We bring the thinking and the making together so your business can show up with more clarity.
-          </p>
-        </div>
-      </section>
-
-      <section className="section services-section">
+      <section className="section home-offer" id="what-we-do">
         <div className="container">
-          <SectionIntro
-            title={<>Built around your<br /><span>real-world goals.</span></>}
-            copy="From the first idea to the final detail, we help ambitious businesses create a digital presence that earns attention and does something with it."
-            action={<Link className="text-link" to="/services">Explore services <ChevronRight size={16} /></Link>}
-          />
-
-          <div className="service-list">
-            {services.map(service => (
-              <Link to="/services" className="service-row" key={service.number}>
-                <span className="service-number">{service.number}</span>
-                <div className="service-main">
-                  <h3>{service.title}</h3>
-                  <p>{service.text}</p>
-                  <div className="tag-list">
-                    {service.tags.map(tag => <span key={tag}>{tag}</span>)}
-                  </div>
-                </div>
-                <ArrowUpRight className="row-arrow" size={22} />
-              </Link>
+          <div className="home-section-heading">
+            <div>
+              <p className="home-kicker">What can you expect?</p>
+              <h2>Practical solutions.<br /><em>One connected place.</em></h2>
+            </div>
+            <p>
+              Choose a service, combine a few or find the guidance and tools to take the next step
+              yourself.
+            </p>
+          </div>
+          <div className="home-category-grid">
+            {serviceCategories.map(category => (
+              <article className="home-category-card" key={category.number}>
+                <span className="home-card-number">{category.number}</span>
+                <h3>{category.title}</h3>
+                <p>{category.description}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="section work-section">
+      <section className="section home-ways">
         <div className="container">
-          <SectionIntro
-            title={<>Small teams.<br /><span>Big signal.</span></>}
-            copy="A few of the digital places we&apos;ve helped bring to life."
-            action={<Link className="text-link" to="/work">View all work <ChevronRight size={16} /></Link>}
-          />
-
-          <div className="project-grid">
-            {workItems.slice(0, 4).map(item => (
-              <ProjectCard key={item.title} item={item} />
+          <div className="home-section-heading">
+            <div>
+              <p className="home-kicker">How does it work?</p>
+              <h2>Support on <em>your terms.</em></h2>
+            </div>
+            <p>
+              Choose how much help you want, and stay involved in the way that works for you.
+            </p>
+          </div>
+          <div className="home-modes-grid">
+            {waysToWork.map(mode => (
+              <article className="home-mode-card" key={mode.number}>
+                <span className="home-card-number">{mode.number}</span>
+                <p className="home-mode-subtitle">{mode.subtitle}</p>
+                <h3>{mode.title}</h3>
+                <p>{mode.description}</p>
+              </article>
             ))}
+          </div>
+          <p className="home-commitment-note">Not every service requires a monthly commitment.</p>
+        </div>
+      </section>
+
+      <section className="section home-flexible">
+        <div className="container home-split">
+          <div>
+            <p className="home-kicker">Flexible by design</p>
+            <h2>Support that can <em>change with you.</em></h2>
+          </div>
+          <div className="home-copy-block">
+            <p>Start with one service or combine several.</p>
+            <p>Choose a once-off service, request additional work or select ongoing support.</p>
+            <p>As your business changes, your requirements can change too.</p>
+            <p className="home-copy-emphasis">
+              No unnecessary packages. No obligation to purchase services you don&apos;t need.
+            </p>
           </div>
         </div>
       </section>
 
-      <ContactBand
-        band={false}
-        kicker={null}
-        title={<>Let&apos;s give it<br /><em>somewhere</em> to go.</>}
-        ctaLabel="Start a conversation"
-        ctaIcon={<ArrowUpRight size={17} />}
-      />
-
-
+      <section className="section home-final-cta">
+        <div className="container home-final-inner">
+          <div>
+            <p className="home-kicker">Your next step</p>
+            <h2>
+              Your business doesn&apos;t need everything.<br />
+              <em>It needs the right things.</em>
+            </h2>
+            <p>Explore the possibilities with HOAWS.</p>
+          </div>
+          <div className="home-final-actions">
+            <Link className="button button-primary" to="/services">
+              Explore Services <ArrowUpRight size={17} />
+            </Link>
+            <a className="home-button-secondary" href={quoteUrl.toString()} target="_blank" rel="noreferrer">
+              Request a Quote <ArrowUpRight size={17} />
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
